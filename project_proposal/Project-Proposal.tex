@@ -1,0 +1,68 @@
+\documentclass{article}
+
+\usepackage{Sweave}
+\begin{document}
+\input{Project-Proposal-concordance}
+
+\section{Your Question in Words}
+
+How does trying to diet affect the average amount of sleep a person gets per night?  Here, we will define "trying to diet" as answering yes to at least one of the provided answers to the question  "How did you try to lose weight?" on the questionnaire (the provided answers are at the end of this document).  
+
+Our population of interest is people ages 25-79 who are not pregnant and do not have a sleep disorder.  We decided to discard the data we had on people ages 16-25 to avoid the covariate of puberty.  
+
+\section{Your Target Causal Parameter}
+
+We are interested in the average treatment effect.  
+
+\section{A Brief Description of the Data}
+
+We are using the NHANES data from 2009-2010.  Specifically, we used the following questionnaires: "Demographic Variables and Sample Weights," "Weight History 16 Years and Older," and "Sleep Disorders."
+
+Our baseline covariates are:
+\begin{itemize}
+\item When the interview was conducted (1 for November 1, 2009 - April 30, 2010, 2 for May 1, 2009 - October 31, 2010)
+\item Subject Gender (1 for Male, 2 for Female)
+\item Age in Months (300-959, or 25-79 years)
+\item Race/Ethnicity (1 for Mexican American, 2 for Other Hispanic, 3 for Non-Hispanic White, 4 for Non-Hispanic Black, 5 for Other Race)
+\item Education Level (1: less than 9th grade, 2: 9-11th grade (including 12th grade with no diploma), 3: high school grad/GED or equivalent, 4: some college or AA degree, 5: college graduate or above)
+\item Marital Status (1: married, 2: widowed, 3: divorced, 4: separated, 5: never married, 6: living with partner)
+\item Annual Household Income (12 levels, \$0-\$24,999 by \$5,000, \$25,000-\$74,999 by \$10,000, )
+\end{itemize}
+
+We thought it was important to have complete covariate data for all people in our study.  Therefore, we deleted all people who responded "refused", "don't know", or are missing for Annual Household Income, Marital Status, Education Level, and Interview Time Period.  We deleted all people who were younger than 25 and older than 79, all pregnant women, and all people who had ever been diagnosed by a doctor with a sleep disorder (or who responded that they "don't know").  
+
+We have information about how much weight each person lost in the past year, and whether or not that person lost the weight intentionally.  We will do our initial data analysis comparing whether or not a person tried to diet, and our secondary analysis by discretizing the amount of weight a person lost (this should represent how seriously someone is dieting) and doing a marginal model.  
+
+\section{Anticipated Challenges}
+
+Our biggest challenge in this project will be dealing with the missing data.  For right now, we are deleting all people who have incomplete covariate data, as well as incomplete outcome data.  One of the covariates that will cause issues is Annual Household Income.  Because we have so many levels, we have the option of treating it as a continuous variable, or the option of collapsing it into fewer categories and treating it as a discrete variable.  
+
+\section{Indicators that a person is trying to diet}
+
+These are the potential responses to the question "How did you try to lose weight?"
+
+\begin{itemize}
+\item Ate less food
+\item Switched to foods with lower calories
+\item Ate less fat
+\item Ate fewer carbohydrates
+\item Exercised
+\item Skipped meals
+\item Ate "diet" foods or products
+\item Used a liquid diet formula such as slimfast or optifast
+\item Joined a weight loss program such as Weight Watchers, Jenny Craig, Tops, or Overeaters Anonymous
+\item Followed a special diet such as Dr. Atkins, South Beach, other high protein or low carbohydrate diet, cabbage soup diet, Ornish, Nutrisystem, Body-for-Life
+\item Took diet pills prescribed by a doctor
+\item Took other pills, medicines, herbs, or supplements not needing a prescription
+\item Started to smoke or began to smoke again
+\item Took laxatives or vomited
+\item Drank a lot of water
+\item Ate more fruits, vegetables, salads
+\item Ate less sugar, candy, sweets
+\item Changed eating habits (didn't eat late at night, ate several small meals a day)
+\item Ate less junk food or fast food
+\item Other (specify)
+\end{itemize}
+
+
+\end{document}
