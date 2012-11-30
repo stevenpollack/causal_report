@@ -8,3 +8,5 @@ Contains .R, .tex, and .Rnw code for causal report
 lucia 2x
 
 This is a change made by Steven inside RStudio via .rProj...
+
+Alex's change.
