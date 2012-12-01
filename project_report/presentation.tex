@@ -1,13 +1,18 @@
 \documentclass{beamer}
 
-\usepackage{graphicx}
+\usepackage{amsmath,amssymb,graphicx}
 \usepackage{tikz}
-\usetikzlibrary{positioning,shapes.geometric}
+\usetikzlibrary{positioning,shapes.geometric,decorations.text}
 
 \usetheme{Warsaw}
 
-\title[ The effect of ``attempting to lose weight'' on sleep ]{Project Presentation}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\indp}{\ensuremath{\perp\hspace{-5pt}\perp}}
+\newcommand{\M}{\mathcal{M}}
+\newcommand{\given}{\; \mid \;}
+\DeclareMathOperator{\logit}{logit}
 
+\title[ The effect of ``attempting to lose weight'' on sleep ]{Project Presentation}
 \author{Alex Luedtke, Lucia Petito, Steven Pollack}
 \institute{PHC252D}
 \date{}
@@ -68,7 +73,6 @@
    \item Annual Household Income (less than or greater than \$20k)
    \item Body Mass Index (continuous from 15-50)
   \end{itemize}
-
 \end{frame}
 
 \begin{frame}
@@ -77,7 +81,6 @@
     \item The subject's response to the question: ``During the past 12 months, have you tried to lose weight?"
     \item Note that this does not restrict to dieting
   \end{itemize}
-
 \end{frame}
 
 \begin{frame}
@@ -86,14 +89,13 @@
     \item The subject's response to the question: ``How much sleep do you usually get at night on weekdays or workdays?
     \item Both $A$ and $Y$ sampled simultaneously, so temporal ordering is only assumed
   \end{itemize}
-
 \end{frame}
 
 \begin{frame}
 \frametitle{SCM and DAG}
-\begin{center}
+
 \begin{minipage}{0.55\linewidth}
-Our observational data structure is $O=(W,A,Y)\sim P_0$. With mild temporal assumptions, one SCM is:
+Our observational data structure is $O=(W,A,Y) \sim P_0$. With mild temporal assumptions, one SCM is:
 \begin{align*}
 W &= f_{W}(U_{W}) \\
 A &= f_{A}(W,U_{A}) \\
@@ -122,45 +124,120 @@ Note: no assumptions made on functional forms of $W$, $A$, or $Y$.
   \label{fig:DAG}
   \end{figure}
 \end{minipage}
-\end{center}
 \end{frame}
 
 \begin{frame}
 \frametitle{$W$: Baseline Covariates}
    \begin{itemize}
-   \item Gender \\
-   \item Age in months (300-959 months, 25-79 years) \\
-   \item Race/Ethnicity (Mexican American, Other Hispanic, Non-Hispanic White, Non-Hispanic Black, Other) \\
-   \item Education Level (less than high school, high school/GED, some college, college and above) \\
-   \item Marital Status (never married, married/living with partner, divorced/separated) \\
-   \item Annual Household Income (less than or greater than \$20k) \\
-   \item Body Mass Index (continuous from 15-50) -- as of prior year \\
+   \item Gender
+   \item Age in months (300-959 months, 25-79 years)
+   \item Race/Ethnicity (Mexican American, Other Hispanic, Non-Hispanic White, Non-Hispanic Black, Other)
+   \item Education Level (less than high school, high school/GED, some college, college and above)
+   \item Marital Status (never married, married/living with partner, divorced/separated) 
+   \item Annual Household Income (less than or greater than \$20k) 
+   \item Body Mass Index (continuous from 15-50) -- as of the prior year 
   \end{itemize}
-
 \end{frame}
 
 \begin{frame}
- \frametitle{$A$: Exposure Variable}
+ \frametitle{Counterfactuals and Causal Quantities\ldots}
   \begin{itemize}
-    \item 
+    \item  Since the intervention is a point treatment, our counterfactual is $Y_{a}$: the average sleep one would get, if they had (or had not) attempted to lose weight.
+    \item[]
+    \item  We are interested in measuring the ATE of attempted weight lose on average sleep:
+    \[
+      \Psi(P_{U,X}) = \E_{U,X}[Y_1] - \E_{U,X}[Y_0]
+    \]
   \end{itemize}
+ \end{frame}
 
+\begin{frame}
+ \frametitle{Statistical Models}
+ \begin{itemize}
+  \item No assumptions on the functional forms of $f_U, f_A, f_Y$.
+  \item No, a priori established, assumptions on independence between any of the $U$'s:
+    \begin{itemize}
+     \item It's plausible that household income is a mediator for the effect of workplace stress on sleep.
+    \end{itemize}
+  \item[]
+  \item Choose the (non-parametric) model, $\M$, of distributions compatible with our SCM.
+ \end{itemize}
 \end{frame}
 
 \begin{frame}
- \frametitle{$Y$: Response Variable}
-  \begin{itemize}
-    \item 
-  \end{itemize}
-
+ \frametitle{Identifiability}
+\begin{minipage}{0.45\linewidth}
+ \begin{itemize}
+   \item Since $\Psi$ is the ATE, we need to satisfy backdoor criterion to identify g-computation with $\Psi$:
+   \[
+   Y_{a} \indp A \mid W
+   \]
+   \item Need $U_{A} \indp U_{Y}$ and either
+    \begin{itemize}
+      \item $U_{A} \indp U_{W}$  (semi-plausible)
+      \item $U_{W} \indp U_{Y}$  (less plausible)
+    \end{itemize}
+ \end{itemize}
+\end{minipage}
+\begin{minipage}{0.45\linewidth}
+    \begin{tikzpicture}[->, shorten >=2pt, >=stealth, node distance=1cm,
+                        pil/.style={->,thick,shorten =2pt,},scale=0.65,font=\scriptsize
+                        ]
+    \node (A) [circle,draw] {A};
+    \node (W) [circle,draw,above right=of A] {W};
+    \node (Y) [circle,draw,below right=of W] {Y};
+    \node (UA) [circle,draw,below left=of A] {$U_A$};
+    \node (UW) [circle,draw,above=of W] {$U_W$};
+    \node (UY) [circle,draw,below right=of Y] {$U_Y$};
+    \draw[->] (W) to [out=195,in=95] (A);
+    \draw[->] (A.east) -- (Y.west);
+    \draw[->] (W) to [out=345,in=95] (Y);
+    \draw[->] (UW.south) -- (W.north);
+    \draw[->] (UA) to [out=45,in=225] (A);
+    \draw[->] (UY) to [out=135,in=315] (Y);
+    \draw[dashed,<->] (UW) to [out=330,in=95] (UY);
+    %\pgftransformyshift{-.65cm}
+    %\draw[decoration={text along path, text={X},text align={center}},decorate] (UA) to
+                      [out=345,in=195] (UY);
+    \draw[dashed,<->,postaction={decorate,decoration={raise=-4pt,text along path,text align=center,text={X}}}] (UA) to [out=345,in=195] (UY);
+    \draw[dashed,<->,postaction={decorate,decoration={raise=-4pt,reverse path,text along path,text align=center,text={???}}}] (UW) to [out=210,in=85] (UA);
+    \draw[dashed,<->,
+    postaction={decorate,
+    decoration={raise=-4pt,text along path,text align=center,text={???}}}] (UW) to [out=330,in=95] (UY);
+    \end{tikzpicture}
+\end{minipage}
 \end{frame}
 
 \begin{frame}
- \frametitle{Specify  SCM (and DAG)}
-  \begin{itemize}
-    \item 
-  \end{itemize}
-
+\frametitle{Estimands}
+Provided we can accept $U_A \indp U_W$ or $U_W \indp U_Y$, we have:
+\begin{itemize}
+  \item Simple Substitution:
+    \[
+      \psi_0 \approx \frac{1}{n}\sum_{i=1}^{n}\widehat{\E}\left[Y \mid A=1, W=W_i \right] - \widehat{\E}\left[Y \mid A=0, W=W_i\right]
+    \]
+  \item IPTW:
+  \[
+    \psi_{0} \approx \frac{1}{n}\sum_{i=1}^{n} \left(\frac{I(A_i=1)}{\hat{g}_n(A_i \mid W_i)} - \frac{I(A_i=0)}{\hat{g}_n(A_i \mid W_i)} \right)Y_i
+  \]
+  \item TMLE:
+  \[
+    \psi_{0} \approx \frac{1}{n}\sum_{i=1}^{n}\left( \bar{Q}_{n}^{1}(1,W_i) - \bar{Q}_{n}^{1}(0,W_i)\right)
+  \]
+%   where
+%   \[
+%   \bar{Q}_{n}^{1}(A,W) = \logit(\bar{Q}_{n}^{0}(A,W)) + \epsilon_{n}\left(\frac{I(A=1)}{\hat{g}_n(A=1\mid W)} - \frac{I(A=0)}{\hat{g}_n(A=0\mid W)} \right)
+%   \]
+\end{itemize}
 \end{frame}
 
+\begin{frame}
+\frametitle{Estimation Procedures}
+Estimate $\bar{Q}_{n}^{0}(a,w) = \widehat{\E}(Y \mid A=a, W=w)$ and $\hat{g}_{n}(a\mid w)$ via Super Learner with library
+\begin{table}[ht!]
+\begin{tabular}{cc}
+algo1 & algo2
+\end{tabular}
+\end{table}
+\end{frame}
 \end{document}
