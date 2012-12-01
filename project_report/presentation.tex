@@ -1,6 +1,6 @@
 \documentclass{beamer}
 
-
+\usepackage{graphicx}
 \usepackage{tikz}
 \usetikzlibrary{positioning,shapes.geometric}
 
@@ -59,25 +59,38 @@
 
 \begin{frame}
 \frametitle{SCM and DAG}
-\begin{tikzpicture}[%
-->,
-shorten >=2pt,
->=stealth,
-node distance=1cm,
-pil/.style={
-->,
-thick,
-shorten =2pt,}
-]
-\node (2) {A};
-\node[left =of 2] (1) {L};
-\node[rectangle,draw] [right=of 2] (4) {C};
-\node[right= of 4] (3) {Y};
-\draw[->] (1.east) --(2.west);
-\draw[->] (2.east) -- (4.west);
-\draw[->] (1) to [out=15,in=165] (3);
-\draw[->] (1) to [out=15,in=165] (4);
-\end{tikzpicture}
+\begin{center}
+\begin{minipage}{0.55\linewidth}
+Our observational data structure is $O=(W,A,Y)\sim P_0$. With mild temporal assumptions, one SCM is:
+\begin{align*}
+W &= f_{W}(U_{W}) \\
+A &= f_{A}(W,U_{A}) \\
+Y &= f_{Y}(W,A,U_{Y}) \\
+\end{align*}
+Note: no assumptions made on functional forms of $W$, $A$, or $Y$.
+\end{minipage}
+\begin{minipage}{0.4\linewidth}
+  \begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[->, shorten >=2pt, >=stealth, node distance=1cm,
+                        pil/.style={->,thick,shorten =2pt,},scale=0.65
+                        ]
+    \node[circle,draw] at (4,2) (1) {W};
+    \node[circle,draw] at (2,0) (2) {A};
+    \node[circle,draw] at (6,0) (3) {Y};
+    \node[circle,draw] at (4,4) (4) {U};
+    \draw[->] (1) to [out=195,in=95] (2);
+    \draw[->] (2.east) -- (3.west);
+    \draw[->] (1) to [out=345,in=95] (3);
+    \draw[->] (4.south) -- (1.north);
+    \draw[->] (4) to [out=210,in=165] (2);
+    \draw[->] (4) to [out=330,in=30] (3);
+    \end{tikzpicture}
+  \caption{Simplified DAG -- no independence assumptions on $U$'s.}
+  \label{fig:DAG}
+  \end{figure}
+\end{minipage}
+\end{center}
 \end{frame}
 
 \begin{frame}
@@ -89,7 +102,7 @@ shorten =2pt,}
    \item Education Level (less than high school, high school/GED, some college, college and above) \\
    \item Marital Status (never married, married/living with partner, divorced/separated) \\
    \item Annual Household Income (less than or greater than \$20k) \\
-   \item Body Mass Index (continuous from 15-50) \\
+   \item Body Mass Index (continuous from 15-50) -- as of prior year \\
   \end{itemize}
 
 \end{frame}
