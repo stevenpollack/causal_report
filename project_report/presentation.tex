@@ -233,11 +233,18 @@ Provided we can accept $U_A \indp U_W$ or $U_W \indp U_Y$, we have:
 
 \begin{frame}
 \frametitle{Estimation Procedures}
-Estimate $\bar{Q}_{n}^{0}(a,w) = \widehat{\E}(Y \mid A=a, W=w)$ and $\hat{g}_{n}(a\mid w)$ via Super Learner with library
+Estimate $\bar{Q}_{n}^{0}(a,w) = \widehat{\E}(Y \mid A=a, W=w)$ (and $\hat{g}_{n}(a\mid w)$) via Super Learner with library:
 \begin{table}[ht!]
-\begin{tabular}{cc}
-algo1 & algo2
+\begin{tabular}{ll}
+SL.mean & $Y \sim A$ \\
+SL.earth & $Y \sim A \times Gender \times RaceEth + MarStat \times HHInc$ \\
+SL.rpartPrune & $+ AgeMonths$:$Gender + EduLevel + AgeMonths $ \\
+SL.ridge & $Y \sim A \times Gender \times MarStat$ \\
+SL.glmnet &  $Y \sim A \times Gender \times AgeMonths \times HHInc$ \\
+median & $Y \sim A \times ExamDate \times MarStat$ 
 \end{tabular}
+\caption{Super Learner library}
 \end{table}
+Is the : a typo? And we'll estimate the treatment mechanism using the same library and glm's but without regressing on $A$.
 \end{frame}
 \end{document}
