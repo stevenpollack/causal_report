@@ -1,5 +1,7 @@
 \documentclass{beamer}
-%\usepackage{palatino}
+
+\usepackage{tikz}
+\usetikzlibrary{positioning,shapes.geometric}
 
 \usetheme{Warsaw}
 
@@ -48,8 +50,32 @@
   \begin{itemize}
     \item categorical as well as numerical data
     \item some questions had a lot of valid responses, but made positivity questionable.
+    \item No shortage of missing data (either ``I don't know'''s or unanswered questions).
   \end{itemize}
  \item The sample for the survey is selected to represent the U.S. population of all ages. To produce reliable statistics, NHANES over-samples persons 60 and older, African Americans, and Hispanics.
  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{SCM and DAG}
+\begin{tikzpicture}[%
+->,
+shorten >=2pt,
+>=stealth,
+node distance=1cm,
+pil/.style={
+->,
+thick,
+shorten =2pt,}
+]
+\node (2) {A};
+\node[left =of 2] (1) {L};
+\node[rectangle,draw] [right=of 2] (4) {C};
+\node[right= of 4] (3) {Y};
+\draw[->] (1.east) --(2.west);
+\draw[->] (2.east) -- (4.west);
+\draw[->] (1) to [out=15,in=165] (3);
+\draw[->] (1) to [out=15,in=165] (4);
+\end{tikzpicture}
 \end{frame}
 \end{document}
