@@ -66,4 +66,4 @@ SL.glm5 <- function(Y, X, newX, family, obsWeights, ...){
 predict.SL.glm5 <- function(object,newdata,...){
 	pred <- predict(object = object$object, newdata = newdata, type ="response")
 	pred
-
+}
