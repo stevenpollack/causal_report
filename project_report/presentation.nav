@@ -24,6 +24,9 @@
 \headcommand {\slideentry {0}{0}{12}{12/12}{}{0}}
 \headcommand {\beamer@framepages {12}{12}}
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 9f42184d9d4b64a84b9b33f7e61a2db78ce676c4
 \headcommand {\slideentry {0}{0}{13}{13/13}{}{0}}
 \headcommand {\beamer@framepages {13}{13}}
 \headcommand {\slideentry {0}{0}{14}{14/14}{}{0}}
@@ -33,6 +36,7 @@
 \headcommand {\beamer@sectionpages {1}{14}}
 \headcommand {\beamer@documentpages {14}}
 \headcommand {\def \inserttotalframenumber {14}}
+<<<<<<< HEAD
 =======
 \headcommand {\beamer@partpages {1}{12}}
 \headcommand {\beamer@subsectionpages {1}{12}}
@@ -40,3 +44,5 @@
 \headcommand {\beamer@documentpages {12}}
 \headcommand {\def \inserttotalframenumber {12}}
 >>>>>>> b82a9181cfab9be3e0f04465efada9d0b1bedf51
+=======
+>>>>>>> 9f42184d9d4b64a84b9b33f7e61a2db78ce676c4
