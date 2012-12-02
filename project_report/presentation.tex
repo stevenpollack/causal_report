@@ -12,7 +12,7 @@
 \newcommand{\given}{\; \mid \;}
 \DeclareMathOperator{\logit}{logit}
 
-\title[ The effect of ``attempting to lose weight'' on sleep ]{Project Presentation}
+\title[Project Presentation]{ The effect of ``attempting to lose weight'' on sleep }
 \author{Alex Luedtke, Lucia Petito, Steven Pollack}
 \institute{PHC252D}
 \date{}
@@ -36,16 +36,25 @@
 \begin{frame}
  \frametitle{Background}
  We know that sleep affects weight, but does trying to lose weight affect sleep?
+  \begin{itemize}
+    \item Doctors advise consistently getting enough sleep each night to maintain a healthy lifestyle.  
+    \item Previous research has shown an association between sleep deprivation and obesity.
+    \item Oversleeping is also associated with a high BMI.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
  \begin{itemize}
   \item We used National Health and Nutrition Examination Survey (NHANES) data -- from the National Center for Health Statistics (NCHS) -- a multistage survey of U.S. population
-    \begin{itemize}
-      \item Stage 1: Counties
-      \item Stage 2: Segments
-      \item Stage 3: Households
-      \item Stage 4: Individuals
-    \end{itemize}
+ \end{itemize}
+ \begin{center}
+    \includegraphics[scale=0.5]{Survey_Design.png}\\
+    
+    {\tiny Picture courtesy of NHANES}
+ \end{center}
+ \begin{itemize}
   \item Survey aims to study wide range of topics such as Cardiovascular disease, Obesity, Physical fitness and physical functioning, Reproductive history and sexual behavior, etc.
-  \end{itemize}
+ \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -63,6 +72,14 @@
 \end{frame}
 
 \begin{frame}
+\frametitle{Massaging the Data}
+  \begin{itemize}
+    \vfill \item Deleted all people who refused to identify Race/Ethnicity, Education Level, Marital Status, Annual Household Income
+    \vfill \item
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
 \frametitle{$W$: Baseline Covariates}
    \begin{itemize}
    \item Gender
@@ -71,7 +88,7 @@
    \item Education Level (less than high school, high school/GED, some college, college and above)
    \item Marital Status (never married, married/living with partner, divorced/separated)
    \item Annual Household Income (less than or greater than \$20k)
-   \item Body Mass Index (continuous from 15-50)
+   \item Body Mass Index from one year ago (continuous from 15-50)
   \end{itemize}
 \end{frame}
 
@@ -124,19 +141,6 @@ Note: no assumptions made on functional forms of $W$, $A$, or $Y$.
   \label{fig:DAG}
   \end{figure}
 \end{minipage}
-\end{frame}
-
-\begin{frame}
-\frametitle{$W$: Baseline Covariates}
-   \begin{itemize}
-   \item Gender
-   \item Age in months (300-959 months, 25-79 years)
-   \item Race/Ethnicity (Mexican American, Other Hispanic, Non-Hispanic White, Non-Hispanic Black, Other)
-   \item Education Level (less than high school, high school/GED, some college, college and above)
-   \item Marital Status (never married, married/living with partner, divorced/separated) 
-   \item Annual Household Income (less than or greater than \$20k) 
-   \item Body Mass Index (continuous from 15-50) -- as of the prior year 
-  \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -241,10 +245,38 @@ SL.earth & $Y \sim A \times Gender \times RaceEth + MarStat \times HHInc$ \\
 SL.rpartPrune & $+ AgeMonths$:$Gender + EduLevel + AgeMonths $ \\
 SL.ridge & $Y \sim A \times Gender \times MarStat$ \\
 SL.glmnet &  $Y \sim A \times Gender \times AgeMonths \times HHInc$ \\
-median & $Y \sim A \times ExamDate \times MarStat$ 
 \end{tabular}
 \caption{Super Learner library}
 \end{table}
-Is the : a typo? And we'll estimate the treatment mechanism using the same library and glm's but without regressing on $A$.
+%Is the : a typo? And we'll estimate the treatment mechanism using the same library and glm's but without regressing on $A$.
+\end{frame}
+
+\begin{frame}
+\frametitle{Results}
+
+\end{frame}
+
+\begin{frame}
+\frametitle{Conclusion}
+There isn't a causal relationship here.
+It would be more interesting to consider variance in sleep.
+\end{frame}
+
+\begin{frame}
+\frametitle{Shortcomings}
+  \begin{itemize}
+    \vfill\item Removed all missing data: deleted 2,832 people
+    \vfill\item Should have more covariates
+    \vfill\item Impossible to accurately bootstrap as it stands: did not account for survey weights
+    \vfill\item Did not account for survey weights in our GLMs: not sure how to
+    \vfill\item Difficult temporal ordering
+    \vfill\item Identifiability implausible ($U_W$ probably not independent of $U_Y$)
+    \vfill\item Covariates do not have predictive power for Y: SuperLearner does no better than basic GLM
+  \end{itemize}
+  \vfill
+\end{frame}
+
+\begin{frame}
+http://www.sleepfoundation.org/article/how-sleep-works/how-much-sleep-do-we-really-need
 \end{frame}
 \end{document}
