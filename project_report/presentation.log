@@ -178,29 +178,31 @@ Package: pgfsys 2010/06/30 v2.10 (rcs-revision 1.37)
 \c@pgf@countc=\count108
 \c@pgf@countd=\count109
 
-(/usr/share/texmf/tex/generic/pgf/systemlayer/pgf.cfg
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/systemlayer/pgf.cfg
 File: pgf.cfg 2008/05/14  (rcs-revision 1.7)
 )
 Package pgfsys Info: Driver file for pgf: pgfsys-pdftex.def on input line 900.
 
-(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-pdftex.def
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-pdf
 File: pgfsys-pdftex.def 2009/05/22  (rcs-revision 1.26)
 
-(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsys-common-pdf.def
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/systemlayer/pgfsys-com
+mon-pdf.def
 File: pgfsys-common-pdf.def 2008/05/19  (rcs-revision 1.10)
 )))
-(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsyssoftpath.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/systemlayer/pgfsyssoft
 File: pgfsyssoftpath.code.tex 2008/07/18  (rcs-revision 1.7)
 \pgfsyssoftpath@smallbuffer@items=\count110
 \pgfsyssoftpath@bigbuffer@items=\count111
 )
-(/usr/share/texmf/tex/generic/pgf/systemlayer/pgfsysprotocol.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/systemlayer/pgfsysprot
+ocol.code.tex
 File: pgfsysprotocol.code.tex 2006/10/16  (rcs-revision 1.4)
 ))
-(/usr/share/texmf/tex/latex/xcolor/xcolor.sty
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2007/01/21 v2.11 LaTeX color extensions (UK)
 
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/color.cfg
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/latexconfig/color.cfg
 File: color.cfg 2007/01/18 v1.5 color configuration of teTeX/TeXLive
 )
 Package xcolor Info: Driver file: pdftex.def on input line 225.
@@ -215,12 +217,16 @@ Package xcolor Info: Model `Gray' substituted by `gray' on input line 1359.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1360.
 )
 (/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcore.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcore.cod
 Package: pgfcore 2010/04/11 v2.10 (rcs-revision 1.7)
 
-(/usr/share/texmf/tex/generic/pgf/math/pgfmath.code.tex
 (/usr/share/texmf/tex/generic/pgf/math/pgfmathcalc.code.tex
-(/usr/share/texmf/tex/generic/pgf/math/pgfmathutil.code.tex)
 (/usr/share/texmf/tex/generic/pgf/math/pgfmathparser.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.
+tex
+tex)
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/math/pgfmathparser.cod
+e.tex
 \pgfmath@dimen=\dimen137
 \pgfmath@count=\count112
 \pgfmath@box=\box35
@@ -228,18 +234,30 @@ Package: pgfcore 2010/04/11 v2.10 (rcs-revision 1.7)
 \pgfmath@stack@operand=\toks21
 \pgfmath@stack@operation=\toks22
 )
-(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.code.tex
-(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.basic.code.tex)
-(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.trigonometric.code.tex)
-(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.random.code.tex)
-(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.comparison.code.tex)
-(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.base.code.tex)
 (/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.round.code.tex)
-(/usr/share/texmf/tex/generic/pgf/math/pgfmathfunctions.misc.code.tex)))
 (/usr/share/texmf/tex/generic/pgf/math/pgfmathfloat.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+basic.code.tex)
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+trigonometric.code.tex)
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+random.code.tex)
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+comparison.code.tex)
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+base.code.tex)
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+round.code.tex)
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.
+misc.code.tex)))
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code
+.tex
 \c@pgfmathroundto@lastzeros=\count113
 ))
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepoints.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepoin
+ts.code.tex
 File: pgfcorepoints.code.tex 2010/04/09  (rcs-revision 1.20)
 \pgf@picminx=\dimen138
 \pgf@picmaxx=\dimen139
@@ -256,79 +274,98 @@ File: pgfcorepoints.code.tex 2010/04/09  (rcs-revision 1.20)
 \pgf@zx=\dimen150
 \pgf@zy=\dimen151
 )
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepathconstruct.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepath
+construct.code.tex
 File: pgfcorepathconstruct.code.tex 2010/08/03  (rcs-revision 1.24)
 \pgf@path@lastx=\dimen152
 \pgf@path@lasty=\dimen153
 )
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepathusage.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepath
+usage.code.tex
 File: pgfcorepathusage.code.tex 2008/04/22  (rcs-revision 1.12)
 \pgf@shorten@end@additional=\dimen154
 \pgf@shorten@start@additional=\dimen155
 )
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorescopes.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorescop
+es.code.tex
 File: pgfcorescopes.code.tex 2010/09/08  (rcs-revision 1.34)
 \pgfpic=\box36
 \pgf@hbox=\box37
 \pgf@layerbox@main=\box38
 \pgf@picture@serial@count=\count114
 )
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoregraphicstate.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoregrap
+hicstate.code.tex
 File: pgfcoregraphicstate.code.tex 2008/04/22  (rcs-revision 1.9)
 \pgflinewidth=\dimen156
 )
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoretransformations.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretran
+sformations.code.tex
 File: pgfcoretransformations.code.tex 2009/06/10  (rcs-revision 1.11)
 \pgf@pt@x=\dimen157
 \pgf@pt@y=\dimen158
 \pgf@pt@temp=\dimen159
 )
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorequick.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorequic
+k.code.tex
 File: pgfcorequick.code.tex 2008/10/09  (rcs-revision 1.3)
 )
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreobjects.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreobje
+cts.code.tex
 File: pgfcoreobjects.code.tex 2006/10/11  (rcs-revision 1.2)
 )
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepathprocessing.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepath
+processing.code.tex
 File: pgfcorepathprocessing.code.tex 2008/10/09  (rcs-revision 1.8)
 )
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorearrows.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorearro
+ws.code.tex
 File: pgfcorearrows.code.tex 2008/04/23  (rcs-revision 1.11)
 )
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreshade.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreshad
+e.code.tex
 File: pgfcoreshade.code.tex 2008/11/23  (rcs-revision 1.13)
 \pgf@max=\dimen160
 \pgf@sys@shading@range@num=\count115
 )
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreimage.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreimag
+e.code.tex
 File: pgfcoreimage.code.tex 2010/03/25  (rcs-revision 1.16)
 
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoreexternal.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoreexte
+rnal.code.tex
 File: pgfcoreexternal.code.tex 2010/09/01  (rcs-revision 1.17)
 \pgfexternal@startupbox=\box39
 ))
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorelayers.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorelaye
+rs.code.tex
 File: pgfcorelayers.code.tex 2010/08/27  (rcs-revision 1.2)
 )
-(/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcoretransparency.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcoretran
+sparency.code.tex
 File: pgfcoretransparency.code.tex 2008/01/17  (rcs-revision 1.2)
 )
 (/usr/share/texmf/tex/generic/pgf/basiclayer/pgfcorepatterns.code.tex
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/pgf/basiclayer/pgfcorepatt
+erns.code.tex
 File: pgfcorepatterns.code.tex 2009/07/02  (rcs-revision 1.3)
 )))
 (/usr/share/texmf/tex/latex/pgf/utilities/xxcolor.sty
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/pgf/utilities/xxcolor.sty
 Package: xxcolor 2003/10/24 ver 0.1
 \XC@nummixins=\count116
 \XC@countmixins=\count117
 )
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2012/05/13 v6.82q Hypertext links for LaTeX
 
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.s
+ty
 Package: hobsub-hyperref 2012/05/28 v1.13 Bundle oberdiek, subset hyperref (HO)
 
 
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+(/usr/local/texlive/2012basic/texmf-dist/tex/generic/oberdiek/hobsub-generic.st
 Package: hobsub-generic 2012/05/28 v1.13 Bundle oberdiek, subset generic (HO)
 Package: hobsub 2012/05/28 v1.13 Construct package bundles (HO)
 Package hobsub Info: Skipping package `infwarerr' (already loaded).
@@ -366,20 +403,19 @@ Package atveryend Info: \enddocument detected (standard20110627).
 Package: atbegshi 2011/10/05 v1.16 At begin shipout hook (HO)
 Package: refcount 2011/10/16 v3.4 Data extraction from label references (HO)
 Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
-)
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+) (/usr/local/texlive/2012basic/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2011/06/30 v3.11 Key value format for package options (HO)
 )
 \@linkdim=\dimen161
 \Hy@linkcounter=\count118
 \Hy@pagecounter=\count119
 
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2012/05/13 v6.82q Hyperref: PDFDocEncoding definition (HO)
 )
 \Hy@SavedSpaceFactor=\count120
 
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
 Package hyperref Info: Option `bookmarks' set `true' on input line 3941.
@@ -394,7 +430,7 @@ Package hyperref Info: Implicit mode OFF; no redefinition of LaTeX internals.
 Package hyperref Info: Bookmarks ON on input line 4300.
 \c@Hy@tempcnt=\count121
 
-(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip10
 Package: url 2006/04/12  ver 3.3  Verb mode for urls, etc.
 )
@@ -420,29 +456,31 @@ Package hyperref Message: Stopped early.
 
 Package hyperref Message: Driver (autodetected): hpdftex.
 
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hpdftex.def
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/hyperref/hpdftex.def
 File: hpdftex.def 2012/05/13 v6.82q Hyperref driver for pdfTeX
 \Fld@listcount=\count124
 \c@bookmark@seq@number=\count125
 
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
 Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 82.
 ))
-(/usr/share/texmf/tex/latex/beamer/base/beamerbaserequires.sty
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/beamer/beamerbaserequires.st
+y
 Package: beamerbaserequires 2010/05/01  (rcs-revision efa082c6111d)
 
-(/usr/share/texmf/tex/latex/beamer/base/beamerbasecompatibility.sty
-Package: beamerbasecompatibility 2010/07/12  (rcs-revision 6648c3177e4e)
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/beamer/beamerbasecompatibili
+ty.sty
+Package: beamerbasecompatibility 2012/05/01  (rcs-revision 67c48b3b652d)
 )
-(/usr/share/texmf/tex/latex/beamer/base/beamerbasefont.sty
-Package: beamerbasefont 2010/05/10  (rcs-revision cd36e8a33c6b)
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/beamer/beamerbasefont.sty
+Package: beamerbasefont 2012/09/19  (rcs-revision 733629cd0c6c)
 
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2009/06/22 v3.00
 
-(/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
 \@emptytoks=\toks23
 \symAMSa=\mathgroup4
@@ -450,30 +488,33 @@ Package: amsfonts 2009/06/22 v3.00 Basic AMSFonts support
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 96.
 )))
-(/usr/share/texmf/tex/latex/beamer/base/beamerbasetranslator.sty
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/beamer/beamerbasetranslator.
+sty
 Package: beamerbasetranslator 2010/06/11  (rcs-revision 85fd1cc7fc42)
 
-(/usr/share/texmf/tex/latex/beamer/base/translator/translator.sty
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/beamer/translator/translator
+.sty
 Package: translator 2010/06/12 ver 1.10
 
-(/usr/share/texmf/tex/latex/beamer/base/translator/translator-language-mappings
-.tex))) (/usr/share/texmf/tex/latex/beamer/base/beamerbasemisc.sty
-Package: beamerbasemisc 2010/06/06  (rcs-revision bff0a9294b45)
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/beamer/translator/translator
+-language-mappings.tex)))
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/beamer/beamerbasemisc.sty
+Package: beamerbasemisc 2012/02/24  (rcs-revision 2ff5461be705)
 )
-(/usr/share/texmf/tex/latex/beamer/base/beamerbasetwoscreens.sty
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/beamer/beamerbasetwoscreens.
+sty
 Package: beamerbasetwoscreens 2010/05/01  (rcs-revision efa082c6111d)
 )
-(/usr/share/texmf/tex/latex/beamer/base/beamerbaseoverlay.sty
-Package: beamerbaseoverlay 2010/05/07  (rcs-revision 5584dad462a9)
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/beamer/beamerbaseoverlay.sty
+Package: beamerbaseoverlay 2012/11/11  (rcs-revision 6afbc49b1109)
 \beamer@argscount=\count126
 \beamer@lastskipcover=\skip44
 \beamer@trivlistdepth=\count127
+) (/usr/local/texlive/2012basic/texmf-dist/tex/latex/beamer/beamerbasetitle.sty
+Package: beamerbasetitle 2010/09/21  (rcs-revision f0446ed0b6ae)
 )
-(/usr/share/texmf/tex/latex/beamer/base/beamerbasetitle.sty
-Package: beamerbasetitle 2010/06/12  (rcs-revision 717e481ca47a)
-)
-(/usr/share/texmf/tex/latex/beamer/base/beamerbasesection.sty
-Package: beamerbasesection 2010/06/17  (rcs-revision e0d9401bb743)
+(/usr/local/texlive/2012basic/texmf-dist/tex/latex/beamer/beamerbasesection.sty
+Package: beamerbasesection 2012/11/11  (rcs-revision 0056eef6f17f)
 \c@lecture=\count128
 \c@part=\count129
 \c@section=\count130
