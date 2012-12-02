@@ -1,0 +1,1881 @@
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(-(abs(i + (n-j)))/(n)+rgamma(1,shape=1,scale=.01))#
+	}#
+}#
+C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)
+plot(bottomleft)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(-((i + (n-j))^2 + (j + (n-i))^2)/(n)+rgamma(1,shape=1,scale=.01))#
+	}#
+}#
+C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)
+plot(bottomleft)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(-((i + (n-j))^2)/(n)+rgamma(1,shape=1,scale=.01))#
+	}#
+}#
+C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)
+plot(bottomleft)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.01))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)
+plot(bottomleft)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.01))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)
+plot(bottomleft)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.001))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)
+plot(bottomleft)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(-(i + (n-j))/(n)+rgamma(1,shape=1,scale=1))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)
+plot(bottomleft)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.5))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)
+plot(bottomleft)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.3))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)
+plot(bottomleft)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.3)/((n-i)*(n-j)))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)
+plot(bottomleft)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.3) -(n-i)*(n-j)/100)#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)
+plot(bottomleft)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.3) -((n-i)+(n-j))/10)#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)
+plot(bottomleft)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.3) -((n-i)+(n-j))/2)#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)
+plot(bottomleft)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.3) -((n-i)+(n-j))/(100))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)
+plot(bottomleft)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.4) -((n-i)+(n-j))/(100))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)
+plot(bottomleft)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.3) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)
+plot(bottomleft)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.5) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)
+plot(bottomleft)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)
+plot(bottomleft)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(10-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)
+plot(bottomleft)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)
+plot(bottomleft)
+plot(bottomright)
+grid.arrange(bottomleft,bottomright,ncol=2)
+library('gridExtra')
+install.packages('gridExtra')
+grid.arrange(bottomleft,bottomright,ncol=2)
+grid <- expand.grid(x=x, y=y)
+print(topleft,position=c(0,0.6,1,1),more=TRUE)#
+print(topright,position=c(0,0,1,.4))
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.1))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)#
+print(topleft,position=c(0,0.6,1,1),more=TRUE)#
+print(topright,position=c(0,0,1,.4))
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-300+rgamma(1,shape=1,scale=.1))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)#
+print(topleft,position=c(0,0.6,1,1),more=TRUE)#
+print(topright,position=c(0,0,1,.4))
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-350+rgamma(1,shape=1,scale=.1))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)#
+print(topleft,position=c(0,0.6,1,1),more=TRUE)#
+print(topright,position=c(0,0,1,.4))
+?print.lattice
+?print.levelplot
+par(mfrow=c(2,2))#
+image(C,break(seq(0,1,by=1/11)))
+image(C,breaks=seq(0,1,by=1/11))
+image(C,breaks=seq(0,1,by=1/12))
+head(C)
+tail(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-200+rgamma(1,shape=1,scale=.1))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/11))
+image(C,breaks=seq(0,1,by=1/12))
+head(C)
+tail(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-100+rgamma(1,shape=1,scale=.1))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+head(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-50+rgamma(1,shape=1,scale=.1))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+head(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-20+rgamma(1,shape=1,scale=.1))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+head(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-10+rgamma(1,shape=1,scale=.1))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+head(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-10+rgamma(1,shape=1,scale=.05))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-5+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-2+rgamma(1,shape=1,scale=.01))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-2+rgamma(1,shape=1,scale=.1))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-2+rgamma(1,shape=1,scale=.3))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-3+rgamma(1,shape=1,scale=.5))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-3+2*rgamma(1,shape=1,scale=.25))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-3+4*rgamma(1,shape=1,scale=.125))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-3+20*rgamma(1,shape=1,scale=.025))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-3+20*rnorm(1,mean=(i+j)))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-50+20*rnorm(1,mean=(i+j)/5))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-50+20*rnorm(1,mean=(i+j)/25))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-50+20*rnorm(1,mean=(i+j)/25),sd=(i+j)/25)#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-50+20*rnorm(1,mean=(i+j)/25,sd=(i+j)/25))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-50+20*rnorm(1,mean=(i+j)/25,sd=(i+j)/200))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-50+20*rnorm(1,mean=(i+j)/15,sd=(i+j)/100))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-50+20*rnorm(1,mean=(i+j)/10,sd=(i+j)/50))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-100+20*rnorm(1,mean=(i+j)/10,sd=(i^2+j)/50))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-100+20*rnorm(1,mean=(i+j)/10,sd=(i^2/10 + i+j)/50))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-100+20*rnorm(1,mean=(i+j)/10,sd=(i^2/10 + i+j)/100))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-100+20*rnorm(1,mean=(i+j)/40,sd=(i^2/10 + i+j)/100))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-100+20*rnorm(1,mean=(i+j^2/10)/40,sd=(i^2/10 + i+j)/100))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-300+20*rnorm(1,mean=(i+j^2/10)/40,sd=(i^2/10 + i+j)/10))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-500+20*rnorm(1,mean=(i+j^2/10)/40,sd=(i^2/10 + i+j)/10))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-1000+20*rnorm(1,mean=(i+j^2/10)/40,sd=(i^2/10 + i+j)/2))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = expit(-10000+20*rnorm(1,mean=(i+j^2/10)/40,sd=(i^2/10 + i+j)/2))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C.star)
+levelplot(C)
+?rmultinom
+rmultinom(1,1,c(.1,.5,.4))
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(0,1,by=0.01),nrow=1)%*%rmultinom(1,1,(seq(0,1,by=0.01)^2+0.0001)#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+rmultinom(1,1,1:5)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(0,1,by=0.01),nrow=1)%*%rmultinom(1,1,(seq(0,1,by=0.01)^2+0.0001))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=0.01),nrow=1)%*%rmultinom(1,1,(seq(0,1,by=0.01)^2+0.0001))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=-0.01),nrow=1)%*%rmultinom(1,1,(seq(0,1,by=0.01)^2+0.0001))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C)
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=-0.01),nrow=1)%*%rmultinom(1,1,(seq(0,1,by=0.01)^4+0.0001))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+par(mfrow=c(2,2))#
+image(C,breaks=seq(0,1,by=1/12))
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=-0.01),nrow=1)%*%rmultinom(1,1,(seq(0,1,by=0.01)^6+0.0001))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=-0.01),nrow=1)%*%rmultinom(1,1,(seq(0,1,by=0.01)^8+0.0001))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=-0.01),nrow=1)%*%rmultinom(1,1,(seq(0,1,by=0.01)^8+0.00001))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=-0.01),nrow=1)%*%rmultinom(1,1,(seq(0,1,by=0.01)^4+0.0000001))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=-0.01),nrow=1)%*%rmultinom(1,1,(seq(0,1,by=0.01)^4+0.0000001))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=-0.01),nrow=1)%*%rmultinom(1,1,(seq(0.01,1.01,by=0.01)^4))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=-0.01),nrow=1)%*%rmultinom(1,1,(seq(0.01,1.01,by=0.01)^8))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+.01^10
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=-0.01),nrow=1)%*%rmultinom(1,1,(seq(0.01,1.01,by=0.01)^10))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=-0.01),nrow=1)%*%rmultinom(1,1,exp(seq(1,100,by=0.01)))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+exp(100)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=-0.01),nrow=1)%*%rmultinom(1,1,exp(seq(1,100,by=1)))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=-0.01),nrow=1)%*%rmultinom(1,1,exp(seq(1,100,by=length.out=101)))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=-0.01),nrow=1)%*%rmultinom(1,1,exp(seq(1,100,length.out=101)))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=-0.01),nrow=1)%*%rmultinom(1,1,exp(seq(1,5,length.out=101)))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=-0.01),nrow=1)%*%rmultinom(1,1,exp(seq(1,25,length.out=101)))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=-0.01),nrow=1)%*%rmultinom(1,1,exp(seq(-25,25,length.out=101)))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=-0.01),nrow=1)%*%rmultinom(1,1,exp(seq(-15,15,length.out=101)))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=-0.01)^(0.5),nrow=1)%*%rmultinom(1,1,exp(seq(-20,20,length.out=101)))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(1,0,by=-0.01)^(0.25),nrow=1)%*%rmultinom(1,1,exp(seq(-20,20,length.out=101)))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(0,1,by=0.2),nrow=1)%*%rmultinom(1,1,c(10000,100,1,0.01,1e-10))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(0,1,by=0.25),nrow=1)%*%rmultinom(1,1,c(10000,100,1,0.01,1e-10))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(0,1,by=0.25),nrow=1)%*%rmultinom(1,1,c(1000,100,1,0.01,1e-10))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(0,1,by=0.25),nrow=1)%*%rmultinom(1,1,c(1000,100,1,0.1,1e-3))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(0,1,by=0.25),nrow=1)%*%rmultinom(1,1,c(5000,100,1,0.1,1e-3))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(0,1,by=0.25),nrow=1)%*%rmultinom(1,1,c(5000,100,1,0.1,1e-3))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(0,1,by=0.25),nrow=1)%*%rmultinom(1,1,c(5000,50,5,0.5,0.1))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+levelplot(C)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(0,1,by=0.25),nrow=1)%*%rmultinom(1,1,c(5000,100,10,1,0.2))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+levelplot(C.star)
+levelplot(C)
+par(mfrow=c(2,2))#
+image(C,breaks=c(seq(0,1,by=0.25),rep(0,by=7)))
+?image
+levelplot(C.star)
+n = 100#
+C = matrix(NA,n,n)#
+C2 = matrix(NA,n,n)#
+for(i in 1:n){#
+	for(j in 1:n){#
+		C[i,j] = matrix(seq(0,1,by=0.25),nrow=1)%*%rmultinom(1,1,c(5000,100,10,1,0.2))#
+		C2[i,j] = expit(2-(i + (n-j))/(n)+rgamma(1,shape=1,scale=.05) -((n-i)+(n-j))/(200))#
+	}#
+}#
+for(i in 1:(n-1)){#
+	for(j in 2:n){#
+		C2[i,j] = C2[j,i]#
+	}#
+}#
+##C2 = apply(apply(1-C2,2,function(xx){smooth.spline(xx,spar=0.1)$y}),1,function(xx){smooth.spline(xx,spar=0.1)$y})#
+C.star = make.max.char(C)#
+C2.star = make.max.char(C2)#
+topleft = levelplot(C)#
+topright = levelplot(C.star)#
+bottomleft = levelplot(C2)#
+bottomright = levelplot(C2.star)#
+plot.new()#
+par(mfrow=c(2,2),oma=c(2,0,2,0))#
+print(topleft,split=c(1,1,2,2))#
+print(topright,split=c(1,2,2,2),newpage=FALSE)#
+print(bottomleft,split=c(2,1,2,2),newpage=FALSE)#
+print(topright,split=c(2,2,2,2),newpage=FALSE)
+plot.new()#
+par(mfrow=c(2,2),oma=c(2,0,2,0))#
+print(topleft,split=c(1,1,2,2))#
+print(bottomleft,split=c(1,2,2,2),newpage=FALSE)#
+print(topright,split=c(2,1,2,2),newpage=FALSE)#
+print(topright,split=c(2,2,2,2),newpage=FALSE)
+plot.new()#
+par(mfrow=c(2,2),oma=c(2,0,2,0))#
+print(topleft,split=c(1,1,2,2))#
+print(bottomleft,split=c(1,2,2,2),newpage=FALSE)#
+print(topright,split=c(2,1,2,2),newpage=FALSE)#
+print(bottomright,split=c(2,2,2,2),newpage=FALSE)
+?levelplot
+print(bottomleft,split=c(1,2,2,2),newpage=FALSE,breakpoints=seq(0,1,length.out=17))
+print(bottomleft,split=c(1,2,2,2),newpage=FALSE,breakpoints=seq(0,1,length.out=17))
+print(bottomleft,split=c(1,2,2,2),newpage=FALSE,breakpoints=seq(0,1,length.out=17))
+print(bottomleft,split=c(1,2,2,2),newpage=FALSE,breakpoints=seq(0,1,length.out=17))
+seq(0,1,length.out=3)
+print(bottomleft,split=c(1,2,2,2),newpage=FALSE,at=seq(0,1,length.out=17))
+print(bottomleft,split=c(1,2,2,2),newpage=FALSE,colorkey=list(at=seq(0,1,length.out=17)))
+print(bottomleft,split=c(1,2,2,2),newpage=FALSE,colorkey=list(at=seq(0,1,length.out=17),labels=seq(0,1,length.out=17)))
+topleft = levelplot(C,colorkey=list(at=seq(0,1,length.out=17)))#
+topright = levelplot(C.star,colorkey=list(at=seq(0,1,length.out=17)))#
+bottomleft = levelplot(C2,colorkey=list(at=seq(0,1,length.out=17)))#
+bottomright = levelplot(C2.star,colorkey=list(at=seq(0,1,length.out=17)))#
+plot.new()#
+par(mfrow=c(2,2),oma=c(2,0,2,0))#
+print(topleft,split=c(1,1,2,2))#
+print(bottomleft,split=c(1,2,2,2),newpage=FALSE)#
+print(topright,split=c(2,1,2,2),newpage=FALSE)#
+print(bottomright,split=c(2,2,2,2),newpage=FALSE)
+topleft = levelplot(C,colorkey=list(at=seq(0,1,length.out=17)),xlab='# of x-partitions',ylab='# of y-partitions')#
+topright = levelplot(C.star,colorkey=list(at=seq(0,1,length.out=17)),xlab='# of x-partitions',ylab='# of y-partitions')#
+bottomleft = levelplot(C2,colorkey=list(at=seq(0,1,length.out=17)),xlab='# of x-partitions',ylab='# of y-partitions')#
+bottomright = levelplot(C2.star,colorkey=list(at=seq(0,1,length.out=17)),xlab='# of x-partitions',ylab='# of y-partitions')#
+plot.new()#
+par(mfrow=c(2,2),oma=c(2,0,2,0))#
+print(topleft,split=c(1,1,2,2))#
+print(bottomleft,split=c(1,2,2,2),newpage=FALSE)#
+print(topright,split=c(2,1,2,2),newpage=FALSE)#
+print(bottomright,split=c(2,2,2,2),newpage=FALSE)
+citation(package='energy')
+library('SuperLearner')
+?SuperLearner
+mod(7,3)
+7%%3
+7%%3 + 1
+getwd()
+setwd('Dropbox/Causal Project/causal_report/code/')
+ls()
+dir()
+load("SL_g.R")
+source("SL_g.R")
+ls()
+load("../../sdw.Rdata")
+estimate.g(sdw)
+library('SuperLearner')
+estimate.g(sdw)
+library('glmnet')
+install.packages('glmnet')
+estimate.g(sdw)
+install.packages('earth')
+estimate.g(sdw)
+sdw[['A']]
+source('SL.library2')
+source("SLlibrary2.R")
+SL.glm1
+estimate.g(sdw)
+source('estimate.g.R')
+source('estimate_g.R')
+estimate.g(sdw)
+SL.glm5
+SL.glm1
+source("SLlibrary2.R")
+SL.glm5
+SL.glm4
+source("estimate_g.R")
+g.est = estimate.g(sdw)
+source("estimate_g.R")
+g.est = estimate.g(sdw)
+g.est
+dim(g)
+dim(est.g)
+dim(g.est)
+str(g.est)
+g.est$pred
+dim(g.est$pred)
+source("estimate_g.R")
+g.est = estimate.g(sdw)
+g.est
+hist(g.est)
+hist(g.est,freak=FALSE)
+hist(g.est,freq=FALSE)
+min(g.est)
+max(g.est)
+save(g.est,file='g_est.Rdata')
+install.packages('tmle')
+estimate \bar{Q}_{n}^{0} and bootstrap for variance#
+#
+library('SuperLearner')#
+library('tmle')#
+load('../../sdw.Rdata') # load data#
+source("estimate_g.R")#
+#
+SL.library <- c(paste("SL.glm",1:5, sep=""), "SL.mean", "SL.earth", "SL.rpartPrune", "SL.ridge", "SL.glmnet")#
+#
+n = nrow(sdw)#
+bootstrap.list = do.call(rbind,lapply(1:2,function(i){#
+	if(i>1){#
+		row.inds = sample(1:n,replace=T)#
+		sdw.boot = sdw[row.inds,]#
+	} else {#
+		sdw.boot = sdw#
+	}#
+	source('SLlibrary2.R') # source wrapper functions for glm's#
+	g.est = estimate.g(sdw.boot)#
+	source('SLlibrary1.R') # source wrapper functions for glm's#
+	X <- sdw.boot[,-10] # dataframe of predictor variables#
+	X[,9] <- X[,9]-1 # shift treatment back to {0,1}#
+	Y <- sdw.boot[,10] # vector of outcomes#
+	control <- within(data=X,expr={A<-0})#
+	treatment <- within(data=X,expr={A<-1})#
+	Qbar.n0 = SuperLearner(Y=Y, X=X,#
+                          SL.library=SL.library,#
+                          cvControl=list(V=10))#
+  Qbar.n0.A0 <- predict(Qbar.n0,newdata=control)$pred#
+  Qbar.n0.A1 <- predict(Qbar.n0,newdata=treatment)$pred#
+  ATE <- mean(Qbar.n0.A1 - Qbar.n0.A0)#
+  W = X[,-which(colnames(X)=='A')]#
+  A = X[['A']]#
+  Q = cbind(Qbar.n0.A0,Qbar.n0.A1)#
+  tmle.out = tmle(Y,A,W,Q=Q,g1W=g.est)$estimates$ATE$psi#
+  iptw.est = mean(((A==1)/g.est + (A==0)/g.est)*Y)#
+  return(c(ATE,iptw.est,tmle.out))#
+}))
+bootstrap.list
+source("bootstrap_all.R")
+source("bootstrap_all.R")
+source("bootstrap_all.R")
+source("bootstrap_all.R")
+rm(list=ls(all=TRUE))
+source("bootstrap_all.R")
+source("bootstrap_all.R")
+source("bootstrap_all.R")
