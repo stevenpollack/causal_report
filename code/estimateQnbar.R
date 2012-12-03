@@ -1,6 +1,7 @@
 ## estimate \bar{Q}_{n}^{0} and bootstrap for variance
 
 library('SuperLearner')
+library('tmle')
 load('../causal_data/sdw.Rdata') # load data
 source('./code/SLlibrary1.R') # source wrapper functions for glm's
 
