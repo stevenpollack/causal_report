@@ -35,11 +35,11 @@
 
 \begin{frame}
  \frametitle{Background}
- We know that sleep affects weight, but does trying to lose weight affect sleep?
+ We know that sleep habits affect weight, but does trying to lose weight affect sleep patterns?
   \begin{itemize}
     \item Doctors advise consistently getting enough sleep each night to maintain a healthy lifestyle.  
-    \item Previous research has shown an association between sleep deprivation and obesity.
-    \item Oversleeping is also associated with a high BMI.
+    \item Previous research has shown an association between sleep deprivation and obesity and oversleeping and obesity (indicates a U-shaped curve).
+    \item Hormonal changes from dieting could cause disruptions in sleep cycle (could also be caused by exercise).
   \end{itemize}
 \end{frame}
 
@@ -64,17 +64,10 @@
   \begin{itemize}
     \item categorical as well as numerical data
     \item some questions had a lot of valid responses, but made practical positivity questionable.
-    \item No shortage of missing data (either ``I don't know'''s or unanswered questions).
+    \item No shortage of missing data (either ``I don't know''s or unanswered questions).
   \end{itemize}
- \item The sample for the survey is selected to represent the U.S. population of all ages. To produce reliable statistics, NHANES over-samples persons 60 and older, African Americans, and Hispanics.
+ \item The sample for the survey is selected to represent the U.S. population of all ages. To produce reliable statistics, NHANES over-samples persons 60 and older, adolescents, African Americans, and Hispanics.
  \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Massaging the Data}
-  \begin{itemize}
-    \vfill \item Deleted all people who refused to identify Race/Ethnicity, Education Level, Marital Status, Annual Household Income
-  \end{itemize}
 \end{frame}
 
 \begin{frame}
@@ -103,6 +96,14 @@
   \begin{itemize}
     \item The subject's response to the question: ``How much sleep do you usually get at night on weekdays or workdays?
     \item Both $A$ and $Y$ sampled simultaneously, so temporal ordering is only assumed
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Massaging the Data}
+  \begin{itemize}
+    \vfill \item Deleted all people who refused to identify Race/Ethnicity, Education Level, Marital Status, Annual Household Income, dieting status
+    \vfill \item Forced to coarsen the categories in Annual Household Income
   \end{itemize}
 \end{frame}
 
@@ -343,12 +344,6 @@ G-Comp & 0.00983 & (-0.05444, 0.07411) & (-0.04403, 0.07961) \\
 \includegraphics[width=0.75\textwidth]{bootstrap-quantile-ci.pdf}
 \caption{95\% Confidence intervals based off of Bootstrap Quantiles\ldots}
 \end{figure}
-\end{frame}
-
-\begin{frame}
-\frametitle{Conclusion}
-There isn't a causal relationship here.
-It may be more interesting to consider variance in sleep.
 \end{frame}
 
 \begin{frame}
