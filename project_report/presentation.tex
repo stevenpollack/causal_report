@@ -75,6 +75,7 @@
 \begin{frame}
 \frametitle{$W$: Baseline Covariates}
    \begin{itemize}
+   \item When interview was conducted (November 1, 2009 - April 30, 2010 or May 1, 2010 - October 31, 2010)
    \item Gender
    \item Age in months (300-959 months, 25-79 years)
    \item Race/Ethnicity (Mexican American, Other Hispanic, Non-Hispanic White, Non-Hispanic Black, Other)
@@ -106,6 +107,8 @@
   \begin{itemize}
     \vfill \item Deleted all people who refused to identify Race/Ethnicity, Education Level, Marital Status, Annual Household Income, dieting status
     \vfill \item Forced to coarsen the categories in Annual Household Income
+    \vfill \item Collapsed Marital Status to Married/Living with a domestic partner vs. everything else
+    \vfill \item Modified Education Level to 1) less than a high school diploma, 2) high school diploma/GED, 3) some college, and 4) college diploma or more
   \end{itemize}
 \end{frame}
 
@@ -203,7 +206,7 @@ Note: no assumptions made on functional forms of $W$, $A$, or $Y$.
 \begin{frame}
  \frametitle{Statistical Models}
  \begin{itemize}
-  \item No assumptions on the functional forms of $f_U, f_A, f_Y$.
+  \item No assumptions on the functional forms of $f_W, f_A, f_Y$.
   \item Choose the (non-parametric) model, $\M$, of distributions compatible with our SCM.
  \end{itemize}
 \end{frame}
@@ -258,8 +261,8 @@ SL.glmnet &  $Y \sim A \times Gender \times AgeMonths \times HHInc$ \\
 \begin{frame}
 \frametitle{Preliminary Results}
 \begin{itemize}
-\item Multistage survery designed makes bootstraping more involved than usually the case.
-\item Individual's have survey weights associated to them, however we're unsure how to incorporate these weights during analysis
+\item Multistage survery design makes bootstraping more involved than usually the case.
+\item Individuals have survey weights associated to them, however we're unsure how to incorporate these weights during analysis
 \item High dimensionality of $W$ makes assessing positivity difficult.
 \item The following analysis was performed using ``simple random sampling'' procedure during the bootstrap and equal weighting for individuals.
 \end{itemize}
@@ -352,9 +355,9 @@ G-Comp & 0.00983 & (-0.05444, 0.07411) & (-0.04403, 0.07961) \\
 \frametitle{Shortcomings}
   \begin{itemize}
     \vfill\item Removed all missing data on a complete-case basis: deleted 2,832 people
-    \vfill\item Should have more covariates
+    \vfill\item Should have more covariates (tv watching, prescription medicines, etc)
     \vfill\item Impossible to accurately bootstrap as it stands: did not account for survey weights
-    \vfill\item Did not account for survey weights in our GLMs: not yet sure how to
+    \vfill\item Did not account for survey weights in our GLMs
     \vfill\item Difficult temporal ordering
     \vfill\item Identifiability implausible ($U_W$ probably not independent of $U_Y$)
     \vfill\item Covariates do not have predictive power for $Y$: SuperLearner performs similarly to basic GLM
