@@ -5,11 +5,11 @@ library(xtable)
 ## g-comp:
 findCIs <- function(i) {
   bootstrap <- bootstrap.list[,i]
-  bootstrapSD <- sqrt(var(bootstrap[-1]))
+  bootstrapSD <- sqrt(var(bootstrap))
   bootstrapCINormal <- bootstrap[1] + c(-1.96,1.96)*bootstrapSD
   
   pvalue <- pnorm(q=bootstrap.list[1,i],
-                  mean=mean(bootstrap[-1]),
+                  mean=mean(bootstrap),
                   sd=bootstrapSD,lower.tail=FALSE)
   
   tmp <- quantile(bootstrap,probs=c(0.025,0.975))
@@ -32,11 +32,7 @@ bootstrapDataFrame <- data.frame(estimator=c("G-Comp","IPTW","TMLE"),
 
 normalPlot <- ggplot(data=bootstrapDataFrame, aes(x=estimator, y=estimand, colour=estimator)) + geom_point(show_guide=F,size=3) + geom_errorbar(aes(ymin=normalLower, ymax=normalUpper), width=.25, show_guide=F) + ggtitle("Normal Based 95% Confidence Intervals") 
 
-ggsave("./project_report/bootstrap-normal-ci.pdf", plot=normalPlot)
-
 empPlot <- ggplot(data=bootstrapDataFrame, aes(x=estimator, y=estimand, colour=estimator) )  + geom_point(show_guide=F,size=3) + geom_errorbar(aes(ymin=empLower, ymax=empUpper), width=.25, show_guide=F) + ggtitle("Quantile Based 95% Confidence Intervals")
-
-ggsave("./project_report/bootstrap-quantile-ci.pdf", plot=empPlot)
 
 # build latex table
 d <- 5 # num of digits
@@ -55,4 +51,5 @@ rownames(outputTable) <- c("G-Comp","IPTW","TMLE")
 colnames(outputTable) <- c("Estimate","95% Normal CI", "p-value", "95% Quantile CI")
 tableLatex <- xtable(outputTable,digits=5)
 align(tableLatex) <- "rcccc"
+
 
