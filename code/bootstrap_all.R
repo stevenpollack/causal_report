@@ -29,7 +29,7 @@ bootstrap.list = do.call(rbind,lapply(1:101,function(i){
 	
 	## take care of IPTW estimate
 	g.est = estimate.g(sdw.boot)
-	iptw.est = mean( ( (A==1)/g.est - (A==0)/g.est )*Y)
+	iptw.est = mean( ( (A==1)/g.est - (A==0)/(1-g.est) )*Y)
   
 	print(sprintf("IPTW is %f", iptw.est))
 	
