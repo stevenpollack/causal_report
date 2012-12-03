@@ -292,8 +292,24 @@ SL.glmnet &  $Y \sim A \times Gender \times AgeMonths \times HHInc$ \\
 \begin{figure}
 \centering
 \includegraphics[width=0.75\textwidth]{density-plot_ghat.pdf}
-\caption{Histogram and Density estimate from SuperLearner output of $g_n$.}
+\caption{Histogram and Density estimate of weights from SuperLearner output of $g_n$.}
 \end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results (Cont'd)}
+Most of the mass of the weights in $(0,7.5)$, but \texttt{weights} takes on value over 25 once.
+\begin{table}[ht]
+\centering
+\begin{tabular}{cccccc}
+  \hline
+ Min. & 25\% & Median & Mean & 75\% & Max. \\ 
+  \hline
+ 1.037   & 1.281   & 1.587   & 1.952   &  2.198   &  35.335   \\ 
+   \hline
+\end{tabular}
+\caption{Summary of distribution of weights}
+\end{table}
 \end{frame}
 
 \begin{frame}
