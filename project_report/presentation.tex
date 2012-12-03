@@ -255,8 +255,18 @@ SL.glmnet &  $Y \sim A \times Gender \times AgeMonths \times HHInc$ \\
 \begin{itemize}
 \item Multistage survery designed makes bootstraping more involved than usually the case.
 \item Individual's have survey weights associated to them, however we're unsure how to incorporate these weights during analysis
+\item High dimensionality of $W$ makes assessing positivity difficult.
 \item The following analysis was performed using ``simple random sampling'' procedure during the bootstrap and equal weighting for individuals.
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results (Cont'd)}
+\begin{figure}
+\centering
+\includegraphics[width=0.75\textwidth]{density-plot_ghat.pdf}
+\caption{Histogram and Density estimate from SuperLearner output of $g_n$.}
+\end{figure}
 \end{frame}
 
 \begin{frame}
@@ -304,8 +314,6 @@ G-Comp & 0.00983 & (-0.05444, 0.07411) & 0.63589 & (-0.04403, 0.07961) \\
 \caption{Results for na\"{i}ve small sample bootstrap}
 \end{table}
 \end{frame}
-
-
 
 \begin{frame}
 \frametitle{Results (Cont'd)}
