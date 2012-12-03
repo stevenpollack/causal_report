@@ -48,8 +48,7 @@
   \item We used National Health and Nutrition Examination Survey (NHANES) data -- from the National Center for Health Statistics (NCHS) -- a multistage survey of U.S. population
  \end{itemize}
  \begin{center}
-    \includegraphics[scale=0.5]{Survey_Design.png}\\
-    
+    %\includegraphics[scale=0.5]{Survey_Design.png}
     {\tiny Picture courtesy of NHANES}
  \end{center}
  \begin{itemize}
@@ -252,8 +251,69 @@ SL.glmnet &  $Y \sim A \times Gender \times AgeMonths \times HHInc$ \\
 \end{frame}
 
 \begin{frame}
-\frametitle{Results}
+\frametitle{Preliminary Results}
+\begin{itemize}
+\item Multistage survery designed makes bootstraping more involved than usually the case.
+\item Individual's have survey weights associated to them, however we're unsure how to incorporate these weights during analysis
+\item The following analysis was performed using ``simple random sampling'' procedure during the bootstrap and equal weighting for individuals.
+\end{itemize}
+\end{frame}
 
+\begin{frame}
+\frametitle{Results (Cont'd)}
+\begin{figure}
+\centering
+\includegraphics[width=0.45\textwidth]{simplesub_qqplot.pdf}\includegraphics[width=0.45\textwidth]{iptw_qqplot.pdf}
+\caption{Q-Q plots for G-Comp and IPTW estimators against Normal}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results}
+\begin{figure}
+\centering
+\includegraphics[width=0.75\textwidth]{tmle_qqplot.pdf}
+\caption{Q-Q plot for TMLE sampling distribution against Normal}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results (Cont'd)}
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.75\textwidth]{bootstrap-normal-ci.pdf}
+\caption{95\% Confidence intervals based on Normal approximation\ldots}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+\frametitle{Results (Cont'd)}
+\begin{table}[ht]
+\centering
+{\small
+\begin{tabular}{rcccc}
+  \hline
+ & Estimate & 95\% Normal CI & p-value & 95\% Quantile CI \\ 
+  \hline
+G-Comp & 0.00983 & (-0.05444, 0.07411) & 0.63589 & (-0.04403, 0.07961) \\ 
+  IPTW & 0.38282 & (0.13473, 0.63091) & 0.9895 & (0.40209, 0.89568) \\ 
+  TMLE & 0.08175 & (-0.01418, 0.17769) & 0.44935 & (-0.01667, 0.16519) \\ 
+   \hline
+\end{tabular}
+}
+\caption{Results for na\"{i}ve small sample bootstrap}
+\end{table}
+\end{frame}
+
+
+
+\begin{frame}
+\frametitle{Results (Cont'd)}
+\begin{figure}[ht!]
+\centering
+\includegraphics[width=0.75\textwidth]{bootstrap-quantile-ci.pdf}
+\caption{95\% Confidence intervals based off of Bootstrap Quantiles\ldots}
+\end{figure}
 \end{frame}
 
 \begin{frame}
