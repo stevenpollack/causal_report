@@ -220,6 +220,25 @@ Note: no assumptions made on functional forms of $W$, $A$, or $Y$.
 \end{frame}
 
 \begin{frame}
+\frametitle{Results (Cont'd)}
+\begin{itemize}
+ \item Practical positivity violations for now only assessed on categorical variables $V\subset W$
+ \begin{itemize}
+  \item Gender, Race/ethnicity, Education Level, Marital Status
+ \end{itemize}
+ \item No members in our sample who tried to lose weight given:
+\end{itemize}
+\begin{tabular}{| l | l | l | l |}
+\hline
+ Gender & Race & Education & Marital Status \\
+\hline
+Male & Other & Less than HS & Unmarried/not living with partner \\
+Female & Other & HS & Married/living with partner \\
+\hline
+\end{tabular}
+\end{frame}
+
+\begin{frame}
 \frametitle{Estimands}
 Provided we can accept $U_A \indp U_W$ or $U_W \indp U_Y$, we have:
 \begin{itemize}
@@ -266,25 +285,6 @@ SL.glmnet &  $Y \sim A \times Gender \times AgeMonths \times HHInc$ \\
 \item High dimensionality of $W$ makes assessing positivity difficult.
 \item The following analysis was performed using ``simple random sampling'' procedure during the bootstrap and equal weighting for individuals.
 \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Results (Cont'd)}
-\begin{itemize}
- \item Practical positivity violations for now only assessed on categorical variables $V\subset W$
- \begin{itemize}
-  \item Gender, Race/ethnicity, Education Level, Marital Status
- \end{itemize}
- \item No members in our sample who tried to lose weight given:
-\end{itemize}
-\begin{tabular}{| l | l | l | l |}
-\hline
- Gender & Race & Education & Marital Status \\
-\hline
-Male & Other & Less than HS & Unmarried/not living with partner \\
-Female & Other & HS & Married/living with partner \\
-\hline
-\end{tabular}
 \end{frame}
 
 \begin{frame}
