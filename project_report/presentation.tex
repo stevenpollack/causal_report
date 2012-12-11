@@ -3,8 +3,14 @@
 \usepackage{amsmath,amssymb,graphicx}
 \usepackage{tikz}
 \usetikzlibrary{positioning,shapes.geometric,decorations.text}
+%<<<<<<< HEAD
  
 \usetheme{Warsaw}
+=======
+
+\usetheme{default}
+\usecolortheme{wolverine}
+%>>>>>>> 9d5ebd4773be92f01630b4eb9603bc638813eebe
 
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\indp}{\ensuremath{\perp\hspace{-5pt}\perp}}
@@ -20,7 +26,7 @@
 \begin{document}
 \maketitle 
 \begin{frame}
- \frametitle{Outline} % need causal roadmap.
+ \frametitle{Roadmap} 
   \begin{itemize}
     \item Background
     \item Specify SCM (and DAG)
@@ -73,6 +79,7 @@
 \begin{frame}
 \frametitle{$W$: Baseline Covariates}
    \begin{itemize}
+   \item When interview was conducted (November 1, 2009 - April 30, 2010 or May 1, 2010 - October 31, 2010)
    \item Gender
    \item Age in months (300-959 months, 25-79 years)
    \item Race/Ethnicity (Mexican American, Other Hispanic, Non-Hispanic White, Non-Hispanic Black, Other)
@@ -104,6 +111,8 @@
   \begin{itemize}
     \vfill \item Deleted all people who refused to identify Race/Ethnicity, Education Level, Marital Status, Annual Household Income, dieting status
     \vfill \item Forced to coarsen the categories in Annual Household Income
+    \vfill \item Collapsed Marital Status to Married/Living with a domestic partner vs. everything else
+    \vfill \item Modified Education Level to 1) less than a high school diploma, 2) high school diploma/GED, 3) some college, and 4) college diploma or more
   \end{itemize}
 \end{frame}
 
@@ -201,7 +210,7 @@ Note: no assumptions made on functional forms of $W$, $A$, or $Y$.
 \begin{frame}
  \frametitle{Statistical Models}
  \begin{itemize}
-  \item No assumptions on the functional forms of $f_U, f_A, f_Y$.
+  \item No assumptions on the functional forms of $f_W, f_A, f_Y$.
   \item Choose the (non-parametric) model, $\M$, of distributions compatible with our SCM.
  \end{itemize}
 \end{frame}
@@ -212,6 +221,25 @@ Note: no assumptions made on functional forms of $W$, $A$, or $Y$.
  \item We do not believe that trying to lose weight or not trying to lose weight occurs with probability $0$ given any set of  covariates $W$
  \item Practical positivity violations are a concern given $W$ is high dimensional
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Practical Positivity}
+\begin{itemize}
+ \item Practical positivity violations for now only assessed on categorical variables $V\subset W$
+ \begin{itemize}
+  \item Gender, Race/ethnicity, Education Level, Marital Status
+ \end{itemize}
+ \item No members in our sample who tried to lose weight given:
+\end{itemize}
+\begin{tabular}{| l | l | l | l |}
+\hline
+ Gender & Race & Education & Marital Status \\
+\hline
+Male & Other & Less than HS & Unmarried/not living with partner \\
+Female & Other & HS & Married/living with partner \\
+\hline
+\end{tabular}
 \end{frame}
 
 \begin{frame}
@@ -256,8 +284,8 @@ SL.glmnet &  $Y \sim A \times Gender \times AgeMonths \times HHInc$ \\
 \begin{frame}
 \frametitle{Preliminary Results}
 \begin{itemize}
-\item Multistage survery designed makes bootstraping more involved than usually the case.
-\item Individual's have survey weights associated to them, however we're unsure how to incorporate these weights during analysis
+\item Multistage survery design makes bootstraping more involved than usually the case.
+\item Individuals have survey weights associated to them, however we're unsure how to incorporate these weights during analysis
 \item High dimensionality of $W$ makes assessing positivity difficult.
 \item The following analysis was performed using ``simple random sampling'' procedure during the bootstrap and equal weighting for individuals.
 \end{itemize}
@@ -265,30 +293,27 @@ SL.glmnet &  $Y \sim A \times Gender \times AgeMonths \times HHInc$ \\
 
 \begin{frame}
 \frametitle{Results (Cont'd)}
-\begin{itemize}
- \item Practical positivity violations for now only assessed on categorical variables $V\subset W$
- \begin{itemize}
-  \item Gender, Race/ethnicity, Education Level, Marital Status
- \end{itemize}
- \item No members in our sample who tried to lose weight given:
-\end{itemize}
-\begin{tabular}{| l | l | l | l |}
-\hline
- Gender & Race & Education & Marital Status \\
-\hline
-Male & Other & Less than HS & Unmarried/not living with partner \\
-Female & Other & HS & Married/living with partner \\
-\hline
-\end{tabular}
+\begin{figure}
+\centering
+\includegraphics[width=0.75\textwidth]{density-plot_ghat.pdf}
+\caption{Histogram and Density estimate of weights from SuperLearner output of $g_n$.}
+\end{figure}
 \end{frame}
 
 \begin{frame}
 \frametitle{Results (Cont'd)}
-\begin{figure}
+Most of the mass of the weights in $(0,7.5)$, but \texttt{weights} takes on value over 25 once.
+\begin{table}[ht]
 \centering
-\includegraphics[width=0.75\textwidth]{density-plot_ghat.pdf}
-\caption{Histogram and Density estimate from SuperLearner output of $g_n$.}
-\end{figure}
+\begin{tabular}{cccccc}
+  \hline
+ Min. & 25\% & Median & Mean & 75\% & Max. \\ 
+  \hline
+ 1.037   & 1.281   & 1.587   & 1.952   &  2.198   &  35.335   \\ 
+   \hline
+\end{tabular}
+\caption{Summary of distribution of weights} 
+\end{table}
 \end{frame}
 
 \begin{frame}
@@ -350,9 +375,9 @@ G-Comp & 0.00983 & (-0.05444, 0.07411) & (-0.04403, 0.07961) \\
 \frametitle{Shortcomings}
   \begin{itemize}
     \vfill\item Removed all missing data on a complete-case basis: deleted 2,832 people
-    \vfill\item Should have more covariates
+    \vfill\item Should have more covariates (tv watching, prescription medicines, etc)
     \vfill\item Impossible to accurately bootstrap as it stands: did not account for survey weights
-    \vfill\item Did not account for survey weights in our GLMs: not yet sure how to
+    \vfill\item Did not account for survey weights in our GLMs
     \vfill\item Difficult temporal ordering
     \vfill\item Identifiability implausible ($U_W$ probably not independent of $U_Y$)
     \vfill\item Covariates do not have predictive power for $Y$: SuperLearner performs similarly to basic GLM
