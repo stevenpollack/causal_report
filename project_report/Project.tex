@@ -19,8 +19,7 @@ Sleep and food consumption are two things every person thinks about each day, us
 
 There are reasonable explanations for all possible outcomes of this analysis.  An increased interest in one's diet could indicate an increased interest in one's overall health.  Because doctors advise their patients to consistently get enough sleep each night to maintain a healthy lifestyle, it would be reasonable to see more hours of sleep in people who are dieting.  On the other hand, dieting has profound psychological and hormonal effects, which could cause a disruption to normal sleep patterns and result in less sleep on average.
 
-
-Our population of interest is healthy adults ages 25-79 who are not pregnant and have never been diagnosed by a doctor with a sleep disorder.  We are using the NHANES data from 2009-2010 [1, 2].  Specifically, we used the following questionnaires: ``Demographic Variables and Sample Weights," ``Weight History 16 Years and Older," and ``Sleep Disorders."
+For the purposes of this analysis, our population of interest is adults ages 25-79 who are not pregnant, have never been diagnosed by a doctor with a sleep disorder, and live in the USA.  We used the NHANES data from 2009-2010 [1, 2].  Specifically, we used the following questionnaires: ``Demographic Variables and Sample Weights," ``Weight History 16 Years and Older," and ``Sleep Disorders."
 
 Our baseline covariates are:
 \begin{itemize}
@@ -34,9 +33,11 @@ Our baseline covariates are:
 \item Body Mass Index (continuous values from ~15-50) note: this is a combination of subject weight and subject height
 \end{itemize}
 
-Because we have not learned how to deal with missing baseline covariates in class, we will only consider complete cases in this analysis.  Specifically, we deleted all people who responded ``refused" or ``don't know" or are missing data for Annual Household Income, Marital Status, Education Level, and Interview Time Period.  We deleted all people who were younger than 25 and older than 79, all pregnant women, and all people who had ever been diagnosed by a doctor with a sleep disorder (or who responded that they ``don't know").  
+This data set contains many cases that have missing data.  The percentage missing in each covariate is in the table below.  We decided not to attempt multiple imputation; we will only consider complete cases in this analysis.  Specifically, we deleted all people who responded ``refused" or ``don't know" or are missing data for Annual Household Income, Marital Status, Education Level, and Interview Time Period.  We deleted all people who were younger than 25 and older than 79, all pregnant women, and all people who had ever been diagnosed by a doctor with a sleep disorder (or who responded that they ``don't know").  
 
-We have information about how much weight each person lost in the past year and whether or not that person lost the weight intentionally.  In our initial analysis we will treat whether or not a person tried to diet (see the section ``Indicators that a person is trying to diet") as the intervention variable. For all of our analyses, we will use the same outcome variable: average amount of sleep per night. However, we also have data on how much weight each individual lost in the past year (through the questions ``How much did you weigh one year ago'' and   ``How much do you weigh today'').  To capture how seriously someone is dieting, we will then perform a secondary analysis in which we discretize the amount of weight a person lost.  This will be a mediator variable, as it will fall between our intervention variable and our outcome variable.
+[INSERT TABLE]
+
+% We have information about how much weight each person lost in the past year and whether or not that person lost the weight intentionally.  In our analysis we will treat whether or not a person tried to diet as the intervention variable. For all of our analyses, we will use the same outcome variable: average amount of sleep per night. However, we also have data on how much weight each individual lost in the past year (through the questions ``How much did you weigh one year ago'' and   ``How much do you weigh today'').  To capture how seriously someone is dieting, we will then perform a secondary analysis in which we discretize the amount of weight a person lost.  This will be a mediator variable, as it will fall between our intervention variable and our outcome variable.
 
 \{Potential Sources of Bias}
 
