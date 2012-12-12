@@ -5,7 +5,7 @@ library('tmle')
 calcQbar <- function(X,Y,weights,control,treatment) { 
   source('./code/SLlibrary1.R') # source wrapper functions for Qn's glm's
   SL.library <- c(paste("SL.glm",1:5, sep=""), "SL.mean",
-                  "SL.polymars", "SL.rpartPrune", "SL.ridge", "SL.glmnet")
+                  "SL.rpartPrune", "SL.ridge", "SL.glmnet")
   
   Qbar.n0 <- SuperLearner(Y=Y, X=X,
                           obsWeights=weights,
@@ -23,8 +23,8 @@ calcATE <- function(Qbar.n0.A0,Qbar.n0.A1,weights) {
 
 calcGhat <- function(W,A,Y,weights) {
   source('./code/SLlibrary2.R') # source wrapper functions for ghat's glm's
-  SL.lib4g <- c('SL.mean','SL.polymars','SL.rpartPrune',
-                'SL.glmnet',paste('SL.glm',1:4,sep=''))
+  SL.lib4g <- c('SL.mean','SL.rpartPrune','SL.glmnet',
+                paste('SL.glm',1:4,sep=''))
   
   SL.ghat <- SuperLearner(A,W,
                           obsWeights=weights,
@@ -60,7 +60,7 @@ createDataUnits <- function(sdw, bootstrap=FALSE) {
     X <- within(data=X,expr={A <- A-1}) # shift treatment back to {0,1}
     Y <- sdw.boot[["Y"]] # vector of outcomes
   } else {
-    X <- sdw[,which(colnames(sdw.boot) != "Y")] # dataframe of predictor variables
+    X <- sdw[,which(colnames(sdw) != "Y")] # dataframe of predictor variables
     X <- within(data=X,expr={A <- A-1}) # shift treatment back to {0,1}
     Y <- sdw[["Y"]] # vector of outcomes
   }
@@ -70,7 +70,7 @@ createDataUnits <- function(sdw, bootstrap=FALSE) {
   
   control <- within(data=X,expr={A<-0})
   treatment <- within(data=X,expr={A<-1})
-  weights <- X[["IntWeight"]]
+  weights <- X[["IntWeight"]]/sum(X[["IntWeight"]])
   
   data = list(X=X,Y=Y,W=W,A=A,control=control,treatment=treatment,weights=weights)
   return(data)
