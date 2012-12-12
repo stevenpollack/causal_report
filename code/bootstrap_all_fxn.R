@@ -47,24 +47,10 @@ calcTMLE <- function(W,A,Y, Qbar.n0.A0, Qbar.n0.A1, ghat) {
 
 ## create data units
 
-load('../causal_data/Rdata/processed_aggregated_data.Rdata') # load data (uses steven's directory structure)
-sdw <- processed.aggregated.data
-
-createDataUnits <- function(sdw, bootstrap=FALSE) {
-  if (bootstrap) {
-    weights <- sdw[["IntWeight"]]/sum(sdw[["IntWeight"]])
-    n = nrow(sdw)
-    row.inds = sample(1:n,replace=T,prob=weights)
-    sdw.boot = sdw[row.inds,]
-    
-    X <- sdw.boot[,which(colnames(sdw.boot) != "Y")] # dataframe of predictor variables
-    X <- within(data=X,expr={A <- A-1}) # shift treatment back to {0,1}
-    Y <- sdw.boot[["Y"]] # vector of outcomes
-  } else {
-    X <- sdw[,which(colnames(sdw) != "Y")] # dataframe of predictor variables
-    X <- within(data=X,expr={A <- A-1}) # shift treatment back to {0,1}
-    Y <- sdw[["Y"]] # vector of outcomes
-  }
+createDataUnits <- function(sdw) {
+  X <- sdw[,which(colnames(sdw) != "Y")] # dataframe of predictor variables
+  X <- within(data=X,expr={A <- A-1}) # shift treatment back to {0,1}
+  Y <- sdw[["Y"]] # vector of outcomes
 
   W = X[,which(colnames(X) != "A")]
   A = X[["A"]]
@@ -75,13 +61,12 @@ createDataUnits <- function(sdw, bootstrap=FALSE) {
   
   data = list(X=X,Y=Y,W=W,A=A,control=control,treatment=treatment,weights=weights)
   return(data)
-  
 }
 
 ## calculate estimates!
 
-calculateEstimates <- function(dataframe=sdw, bootstrap=FALSE) {
-  data <- createDataUnits(dataframe,bootstrap=bootstrap)
+calculateEstimates <- function(data=sdw) {
+  data <- createDataUnits(data)
   with(data=data, expr={
     Qbar <- calcQbar(X,Y,weights,control,treatment)
     ATE <- calcATE(Qbar$A0,Qbar$A1,weights)  
