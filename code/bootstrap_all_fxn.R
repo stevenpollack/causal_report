@@ -4,7 +4,7 @@ library('tmle')
 
 calcQbar <- function(X,Y,weights,control,treatment) { 
   source('./code/SLlibrary1.R') # source wrapper functions for Qn's glm's
-  SL.library <- c(paste("SL.glm",1:5, sep=""), "SL.mean",
+  SL.library <- c(paste("SL.glm",1:5, sep=""), "SL.mean", "SL.polymars",
                   "SL.rpartPrune", "SL.ridge", "SL.glmnet")
   
   Qbar.n0 <- SuperLearner(Y=Y, X=X,
@@ -52,8 +52,9 @@ sdw <- processed.aggregated.data
 
 createDataUnits <- function(sdw, bootstrap=FALSE) {
   if (bootstrap) {
+    weights <- sdw[["IntWeight"]]/sum(sdw[["IntWeight"]])
     n = nrow(sdw)
-    row.inds = sample(1:n,replace=T,prob=sdw[["IntWeight"]])
+    row.inds = sample(1:n,replace=T,prob=weights)
     sdw.boot = sdw[row.inds,]
     
     X <- sdw.boot[,which(colnames(sdw.boot) != "Y")] # dataframe of predictor variables
