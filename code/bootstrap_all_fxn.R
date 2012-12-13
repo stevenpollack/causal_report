@@ -45,7 +45,7 @@ calcTMLE <- function(W,A,Y, Qbar.n0.A0, Qbar.n0.A1, ghat) {
   tmle.out <- tmle(Y,A,W,Q=Q,g1W=ghat)$estimates$ATE$psi
 }
 
-## create data units
+## process data:
 
 createDataUnits <- function(sdw) {
   X <- sdw[,which(colnames(sdw) != "Y")] # dataframe of predictor variables
@@ -57,27 +57,27 @@ createDataUnits <- function(sdw) {
   
   control <- within(data=X,expr={A<-0})
   treatment <- within(data=X,expr={A<-1})
-  weights <- X[["IntWeight"]]/sum(X[["IntWeight"]])
+  #weights <- X[["IntWeight"]]/sum(X[["IntWeight"]])
   
-  data = list(X=X,Y=Y,W=W,A=A,control=control,treatment=treatment,weights=weights)
+  data = list(X=X,Y=Y,W=W,A=A,control=control,treatment=treatment)#,weights=weights)
   return(data)
 }
 
 ## calculate estimates!
 
-calculateEstimates <- function(data=sdw) {
-  data <- createDataUnits(data)
-  with(data=data, expr={
+calculateEstimates <- function(data,weights) {
+  organized.data <- createDataUnits(data)
+  with(data=organized.data, expr={
     Qbar <- calcQbar(X,Y,weights,control,treatment)
     ATE <- calcATE(Qbar$A0,Qbar$A1,weights)  
-    print(sprintf("ATE is %f",ATE))
+    #print(sprintf("ATE is %f",ATE))
     
     ghat <- calcGhat(W,A,Y,weights)
     IPTW <- calcIPTW(ghat,A,Y,weights)
-    print(sprintf("IPTW is %f", IPTW))
+    #print(sprintf("IPTW is %f", IPTW))
     
     TMLE <- calcTMLE(W,A,Y, Qbar$A0, Qbar$A1, ghat)
-    print(sprintf("TMLE is %f", TMLE))
+    #print(sprintf("TMLE is %f", TMLE))
     
     c(ATE,IPTW,TMLE)
   })
