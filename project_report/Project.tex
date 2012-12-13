@@ -180,8 +180,11 @@ For identfiability, we need $U_{A} \indp U_{Y}$. That is, we need there to be no
     \end{tikzpicture}
 \end{center}
 
-We must also address the issue of positivity.  We do not believe that trying to lose weight or not trying to lose weight occurs with probability $0$ given any set of covariates $W$.  Thus we believe our theoretical positivity requirements are met.  However, practical positivity violations are very prevalent given that $W$ is high dimensional.  If we only consider those variables in $W$ that are categorical (Gender, Race/Ethnicity, Education Level, Marital Status), we only have two strata where no people tried to lose weight:
+We must also address the issue of positivity.  We do not believe that trying to lose weight or not trying to lose weight occurs with probability $0$ given any set of covariates $W$ in our observed data distribution.  Thus we believe our theoretical positivity requirements are met.  However, practical positivity violations are very prevalent given that $W$ is high dimensional.  If we only consider those variables in $W$ that are categorical (Gender, Race/Ethnicity, Education Level, Marital Status), Table \ref{tab:prac.pos} shows that we only have two strata where no people tried to lose weight. When the categorical variable for interview period is also considered, thirteen strata have practical positivity violations.
 
+To get a better sense of the presence of practical positivity violations in our sample, see our discussion of the weight distribution in Figure \ref{fig:weight.dist} in Section \ref{sec:estimates}.
+
+\begin{table}
 \begin{tabular}{| l | l | l | l |}
 \hline
  Gender & Race & Education & Marital Status \\
@@ -190,6 +193,9 @@ Male & Other & Less than HS & Unmarried/not living with partner \\
 Female & Other & HS & Married/living with partner \\
 \hline
 \end{tabular}
+\caption{Practical positivity violations that results when the categorical variables Gender, Race/Ethnicity, Education Level, Marital Status are considered.}
+\label{tab:proc.pos}
+\end{table}
 
 \section{Commit to a Statistical Model and Target Parameter of the Observed Data Distribution}
 
@@ -200,8 +206,9 @@ We are still interested in the ATE, so our target parameter of the observed data
 $$\psi_0 = \sum_{w}\Big[\E_0(Y|A=1,W=w)-E_0(Y|A=0,W=w)\Big]P_0(W=w)$$
 
 \section{Estimate the Chosen Parameter of the Observed Data Distribution}
+\label{sec:estimates}
 
-We proceed with estimation even if cannot fully accept $U_A \indp U_W$ or $U_W \indp U_Y$ as presented in Section \ref{sec:assumptions}. If the assumptions hold, then we know that our estimates are directly estimating a causal parameter. Otherwise, we consider the estimates valuable pieces of information, albeit with known shortcomings. We will estimate the ATE in the following ways: 
+We proceed with estimation even if cannot fully accept $U_A \indp U_W$ or $U_W \indp U_Y$ as presented in Section \ref{sec:assumptions}. If the assumptions hold, then we know that our estimates are directly estimating a causal parameter. Otherwise, we consider the estimates valuable pieces of information, albeit with known shortcomings. We will estimate the ATE using the following estimators: 
 
 \begin{itemize}
   \item Simple Substitution:
@@ -221,7 +228,7 @@ Where $\hat{g}_n(a_i \mid W_i)$ is an estimate of $P_0(A=a_i|W_i)$.
 Where $\bar{Q}_{n}^{1}(a,W_i)$ is a targed estimate of $\E_0(Y|A=a,W)$ \cite{tmle}.
 \end{itemize}
 
-We obtain our estimates of $\hat{g}$ and $\bar{Q}_n^0$ using the candidate library in SuperLearner shown in Table \ref{tab:sl.lib} \cite{superlearner}.
+We obtain our estimates of $\hat{g}$ and $\bar{Q}_n^0$ using the candidate library in SuperLearner shown in Table \ref{tab:sl.lib} \cite{superlearner}. To estimate $\hat{g}$, we remove $A$ from all of the custom GLM's in the second column of Table \ref{tab:sl.lib}. Note that our SuperLearner includes both basic prediction algorithms such as SL.mean and more complex prediction algorithms such as SL.ridge and SL.glmnet. We already described most of the algorithms listed here in a homework, so will not do so here. We chose our custom GLM's to round out our library since fitting GLM's is a computationally inexpensive procedure. While the $Y \sim A \times Gender \times AgeMonths \times HHInc$ GLM would likely overfit the data if fit on the full data set, SuperLearner should overcome this problem data adaptively using cross-validation.
 \begin{table}[ht!]
 \begin{tabular}{l | l}
 Default Algorithms & Custom GLM's \\
@@ -234,6 +241,28 @@ SL.glmnet &  $Y \sim A \times Gender \times AgeMonths \times HHInc$ \\
 \end{tabular}
 \caption{SuperLearner library. Note that the library includes both simple functions such as SL.mean and the custom $Y\sim A$ and higher level functions such as SL.earth (similar to SL.polymars) and SL.rpartPrune.}
 \label{tab:sl.lib}
+\end{table}
+
+Figure \ref{fig:weight.dist} shows that the weight distribution is fairly controlled, without too many large outliers. Because we truncated the x-axis for Figure \ref{fig:weight.dist} to make visualizing the distribution more feasible, we also show the summary of the distribution in Table \ref{tab:weight.summary}. Specifically, we see that the weight distribution is skewed right.
+
+\begin{figure}
+\centering
+\includegraphics[width=0.75\textwidth]{density-plot_ghat.pdf}
+\caption{Histogram and Density estimate of weights from SuperLearner output. Here we truncate at ****, but a summary of the full weight distribution can be seen in Table \ref{tab:weight.summary}.}
+\label{fig:weight.dist}
+\end{figure}
+
+\begin{table}[ht]
+\centering
+\begin{tabular}{cccccc}
+  \hline
+ Min. & 25\% & Median & Mean & 75\% & Max. \\ 
+  \hline
+ 1.037   & 1.281   & 1.587   & 1.952   &  2.198   &  35.335   \\ 
+   \hline
+\end{tabular}
+\caption{Summary of distribution of weights. Note that most of the weights appear to be fairly small, with a mean of 1.952 and a median of 1.582. This discrepancy between mean and median indicates a right-skewed distribution, as can be seen in Figure \ref{fig:weight.dist}. Nonetheless, the largest weight is only 35.335.}
+\label{tab:weight.summary}
 \end{table}
 
 \section{Interpret Results}
