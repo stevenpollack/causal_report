@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage{enumitem}
 \usepackage{amsmath,amssymb,graphicx}
+\usepackage{cite}
 %\usepackage{Sweave}
 \usepackage{tikz}
 \usepackage{cite}
@@ -141,14 +142,15 @@ We are interested in measuring the average treatment effect (ATE) of attempted w
 $$\Psi(P_{U,X}) = \E_{U,X}[Y_1] - \E_{U,X}[Y_0]$$
 
 \section{Assess Identifiability and Positivity}
+\label{sec:assumptions}
 
-Since $\Psi$ is the ATE, we need to satisfy backdoor criterion to identify g-computation with $\Psi$:
+Since $\Psi$ is the ATE, we need to satisfy backdoor criterion to identify G-computation with $\Psi$:
    $$Y_{a} \indp A \mid W$$
 
-For identfiability, we need $U_{A} \indp U_{Y}$ and either
+For identfiability, we need $U_{A} \indp U_{Y}$. That is, we need there to be no unmeasured common causes between attempting to lose weight and average number of hours of sleep per weekday night. We also need either
     \begin{itemize}
-      \item $U_{A} \indp U_{W}$  (semi-plausible)
-      \item $U_{W} \indp U_{Y}$  (less plausible)
+      \item $U_{A} \indp U_{W}$: No unmeasured common causes between an individual's attempt to lose weight and their baseline covariates. This assumption is somewhat plausible given the number of baseline covariates measured, but may not hold.
+      \item $U_{W} \indp U_{Y}$: No unmeasured common causes between average hours of sleep per weekday night and baseline covariates. This assumption seems less plausible. For instance, an individual's stress level one year ago likely has a causal effect on their current relationship status and household income. This variable also likely has a causal relationship with current stress, which in turn may modify sleep habits.
     \end{itemize}
 
 \begin{center}
@@ -196,31 +198,44 @@ We still have no assumptions on the functional forms of $f_W, f_A$, and $f_Y$, s
 
 We are still interested in the ATE, so our target parameter of the observed data distribution (assuming that we have a simple random sample of 4,077 individuals) is
 
-$$\psi_0 = \E_{X,U}[ \E$$
+$$\psi_0 = \sum_{w}\Big[\E_0(Y|A=1,W=w)-E_0(Y|A=0,W=w)\Big]P_0(W=w)$$
 
 \section{Estimate the Chosen Parameter of the Observed Data Distribution}
 
-Provided we can accept $U_A \indp U_W$ or $U_W \indp U_Y$, we will estimate the ATE in the following ways: 
+We proceed with estimation even if cannot fully accept $U_A \indp U_W$ or $U_W \indp U_Y$ as presented in Section \ref{sec:assumptions}. If the assumptions hold, then we know that our estimates are directly estimating a causal parameter. Otherwise, we consider the estimates valuable pieces of information, albeit with known shortcomings. We will estimate the ATE in the following ways: 
 
 \begin{itemize}
   \item Simple Substitution:
     \[
-      \psi_0 \approx \frac{1}{n}\sum_{i=1}^{n}\widehat{\E}\left[Y \mid A=1, W=W_i \right] - \widehat{\E}\left[Y \mid A=0, W=W_i\right]
+      \psi_0 \approx \frac{1}{n}\sum_{i=1}^{n}\Big(\bar{Q}_{n}^{0}(1,W_i) - \bar{Q}_{n}^{0}(0,W_i)\Big)
     \]
+Where $\bar{Q}_{n}^{0}(a,W_i)$ is an estimate of $\E_0(Y|A=a,W)$.
   \item IPTW:
   \[
     \psi_{0} \approx \frac{1}{n}\sum_{i=1}^{n} \left(\frac{I(A_i=1)}{\hat{g}_n(A_i \mid W_i)} - \frac{I(A_i=0)}{\hat{g}_n(A_i \mid W_i)} \right)Y_i
   \]
+Where $\hat{g}_n(a_i \mid W_i)$ is an estimate of $P_0(A=a_i|W_i)$.
   \item TMLE:
   \[
     \psi_{0} \approx \frac{1}{n}\sum_{i=1}^{n}\left( \bar{Q}_{n}^{1}(1,W_i) - \bar{Q}_{n}^{1}(0,W_i)\right)
   \]
+Where $\bar{Q}_{n}^{1}(a,W_i)$ is a targed estimate of $\E_0(Y|A=a,W)$ \cite{tmle}.
 \end{itemize}
 
-%   where
-%   \[
-%   \bar{Q}_{n}^{1}(A,W) = \logit(\bar{Q}_{n}^{0}(A,W)) + \epsilon_{n}\left(\frac{I(A=1)}{\hat{g}_n(A=1\mid W)} - \frac{I(A=0)}{\hat{g}_n(A=0\mid W)} \right)
-%   \]
+We obtain our estimates of $\hat{g}$ and $\bar{Q}_n^0$ using the candidate library in SuperLearner shown in Table \ref{tab:sl.lib} \cite{superlearner}.
+\begin{table}[ht!]
+\begin{tabular}{l | l}
+Default Algorithms & Custom GLM's \\
+\hline
+SL.mean & $Y \sim A$ \\
+SL.earth & $Y \sim A \times Gender \times RaceEth + MarStat \times HHInc$ \\
+SL.rpartPrune & $+ AgeMonths$:$Gender + EduLevel + AgeMonths $ \\
+SL.ridge & $Y \sim A \times Gender \times MarStat$ \\
+SL.glmnet &  $Y \sim A \times Gender \times AgeMonths \times HHInc$ \\
+\end{tabular}
+\caption{SuperLearner library. Note that the library includes both simple functions such as SL.mean and the custom $Y\sim A$ and higher level functions such as SL.earth (similar to SL.polymars) and SL.rpartPrune.}
+\label{tab:sl.lib}
+\end{table}
 
 \section{Interpret Results}
 
@@ -229,6 +244,7 @@ Provided we can accept $U_A \indp U_W$ or $U_W \indp U_Y$, we will estimate the 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+%<<<<<<< HEAD
 \section{Indicators that a person is trying to diet}
 
 Below are the potential responses to the question ``How did you try to lose weight?" [2]:
@@ -259,5 +275,12 @@ Below are the potential responses to the question ``How did you try to lose weig
 
 \bibliography{mybib}{}
 \bibliographystyle{plain}
+=======
+\subsection*{}
+\begin{enumerate}
+	\item Centers for Disease Control and Prevention (CDC). National Center for Health Statistics (NCHS). National Health and Nutrition Examination Survey Data. Hyattsville, MD: U.S. Department of Health and Human Services, Centers for Disease Control and Prevention, 2009-2010. \\ http://www.cdc.gov/nchs/nhanes/nhanes2009-2010/nhanes09\_10.htm.
+	\item Centers for Disease Control and Prevention (CDC). National Center for Health Statistics (NCHS). National Health and Nutrition Examination Survey Questionnaire (or Examination Protocol, or Laboratory Protocol). Hyattsville, MD: U.S. Department of Health and Human Services, Centers for Disease Control and Prevention, 2009-2010. \\ http://www.cdc.gov/nchs/nhanes/nhanes2009-2010/questexam09\_10.htm.
+\end{enumerate}
+%>>>>>>> 84fbbd11ef98da110e041f09951fd8907e14fb51
 
 \end{document}
