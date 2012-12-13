@@ -1,7 +1,7 @@
 \documentclass{article}
 \usepackage{enumitem}
 \usepackage{amsmath,amssymb,graphicx}
-\usepackage{Sweave}
+%\usepackage{Sweave}
 \usepackage{tikz}
 \usetikzlibrary{positioning,shapes.geometric,decorations.text}
 \begin{document}
@@ -21,17 +21,17 @@
 
 \section{Specify the Question}
 
-We know that sleep habits affect weight, but does trying to lose weight affect sleep patterns?
+Recently researchers have tried to relate successful dieting to sleeping habits.  A relationship between obesity and sleep cycles has been established: both oversleeping and sleep deprivation are associated with an increased Body Mass Index (BMI) [REFERENCE]. 
 
-Sleep and food consumption are two things every person thinks about each day, usually with the attitude ``I should eat less and sleep more.''  Our interest stems from a lack of research into this question.  Researchers have conducted studies in the reverse direction, trying to relate sleeping habits to successful dieting.  A relationship between obesity and sleep cycles has been established: both oversleeping and sleep deprivation are associated with an increased Body Mass Index (BMI) [REFERENCE].  
+Nonetheless, little work has been done to consider the opposite relationship. Specifically, we are interested in parsing the causal effect of attempting to lose weight on a person's sleep habits (average hours of sleep/night). While the health benefits associated with losing weight are well documented, it is not currently known if dieting has a negative, positive, or no effect on an individual's sleep habits.
 
-There are reasonable explanations for all possible outcomes of this analysis.  An increased interest in one's diet could indicate an increased interest in one's overall health.  Because doctors advise their patients to consistently get enough sleep each night to maintain a healthy lifestyle, it would be reasonable to see more hours of sleep in people who are dieting.  On the other hand, dieting has profound psychological and hormonal effects, which could cause a disruption to normal sleep patterns and result in less sleep on average.
+There are reasonable explanations for all possible outcomes of this analysis.  An increased interest in one's diet could indicate an increased interest in one's overall health.  Because doctors advise their patients to consistently get enough sleep each night to maintain a healthy lifestyle, it would be reasonable to see more hours of sleep in people who are dieting.  On the other hand, dieting has profound psychological and hormonal effects, which could cause a disruption to normal sleep patterns and result in less sleep on average [REFERENCE].
 
-For the purposes of this analysis, our population of interest is adults ages 25-79 who are not pregnant, have never been diagnosed by a doctor with a sleep disorder, and live in the USA.  We used the NHANES data from 2009-2010 [1, 2] from the following questionnaires: ``Demographic Variables and Sample Weights," ``Weight History 16 Years and Older," and ``Sleep Disorders."
+For the purposes of this analysis, our population of interest is adults ages 25-79 who are not pregnant, have never been diagnosed by a doctor with a sleep disorder, and live in the United States.  We used the National Health and Nutrition Examination Survey (NHANES) data from 2009-2010 [1, 2] from the following questionnaires: ``Demographic Variables and Sample Weights," ``Weight History 16 Years and Older," and ``Sleep Disorders."
 
-NHANES is a multi-stage survey of the U.S. population that the Center for Disease Control and Prevention (CDC) conducts every 2 years.  They sample counties first, then ``segments'' (which can be as small as street blocks to as big as neighborhoods: determined by population density), then households, and finally individuals.  It aims to study a wide range of topics such as cardiovascular disease, obesity, physical fitness and physical functioning, reproductive history and sexual behavior, etc.  Each individual participates in an interview and a physical examination.  The sample is chosen to represent the U.S. population of all ages.  To produce reliable statistics, NHANES over-samples persons 60 and older, adolescents, African Americans, and Hispanics among others.  
+NHANES is a multi-stage survey of the U.S. population that the Center for Disease Control and Prevention (CDC) conducts every 2 years.  They sample counties first, then ``segments'' (which can be as small as street blocks to as big as neighborhoods: determined by population density), then households, and finally individuals.  It aims to study a wide range of topics such as cardiovascular disease, obesity, physical fitness and physical functioning, reproductive history and sexual behavior, etc.  Each individual participates in an interview and a physical examination.  The sample is chosen to represent the U.S. population of all ages.  To produce reliable statistics, NHANES over-samples persons 60 and older, adolescents, African Americans, and Hispanics among others [REFERENCE if not in other cited nhanes documents].  
 
-However, to protect the privacy of the participants, the CDC strips the data of any information that would allow an analyst to find an individual.  This process mostly removes geographic identifiers; in particular, they remove all information about the first three stages of their sampling.  Unfortunately, this removal of information means that we cannot replicate their sampling method accurately, which....
+However, to protect the privacy of the participants, the CDC strips the data of any information that would allow an analyst to find an individual.  This process mostly removes geographic identifiers; in particular, they remove all information about the first three stages of their multistage sampling procedure.  Unfortunately, this removal of information means that we cannot fully replicate their sampling methodology.
 
 Our baseline covariates are:
 \begin{itemize}
@@ -41,13 +41,13 @@ Our baseline covariates are:
 \item Race/Ethnicity (1 for Mexican American, 2 for Other Hispanic, 3 for Non-Hispanic White, 4 for Non-Hispanic Black, 5 for Other Race)
 \item Education Level (1: less than 9th grade, 2: 9-11th grade (including 12th grade with no diploma), 3: high school grad/GED or equivalent, 4: some college or AA degree, 5: college graduate or above)
 \item Marital Status (1: married, 2: widowed, 3: divorced, 4: separated, 5: never married, 6: living with partner)
-\item Annual Household Income (14 levels, \$0-\$24,999 by \$5,000, \$25,000-\$74,999 by \$10,000,  \$75,000 - \$99,999, \$100,000 and over, <\$20,000, >\$20,000)
-\item Body Mass Index (continuous values from ~15-50) note: this is a combination of subject weight and subject height
+\item Annual Household Income (14 levels, \$0-\$24,999 by \$5,000, \$25,000-\$74,999 by \$10,000,  \$75,000 - \$99,999, \$100,000 and over, \$20,000, \$20,000)
+\item Body Mass Index (continuous values from ~15-50) [Note: this is a combination of subject weight and subject height, computed according to the formula in [REFERENCE]]
 \end{itemize}
 
-This data set contains many cases that have missing data.  The percentage missing in each covariate is in the table below.  We decided not to attempt multiple imputation; we will only consider complete cases in this analysis.  Specifically, we deleted all people who responded ``refused" or ``don't know" or are missing data for Annual Household Income, Marital Status, Education Level, and Interview Time Period.  We deleted all people who were younger than 25 and older than 79, all pregnant women, and all people who had ever been diagnosed by a doctor with a sleep disorder (or who responded that they ``don't know").  
+This data set contains many individuals that have missing data.  The percentage missing in each covariate is in Table \ref{}[REFER TO TABLE].  We implemented a complete-case analysis instead of implementing an imputation procedure for this study. Specifically, we deleted all people who responded ``refused" or ``don't know" or are missing data for Annual Household Income, Marital Status, Education Level, and Interview Time Period.  We deleted all people who were younger than 25 and older than 79, all pregnant women, and all people who had ever been diagnosed by a doctor with a sleep disorder (or who responded that they ``don't know").  
 
-We also coarsened the categories for several of the variables.  We decided that we were interested in the ``Marital Status'' variable because it described whether or not the individual had a stable relationship in their life, so we collapsed it into ``married or living with partner'' vs ''else.''  Because a significant number of people replied ''<\$20,000'' and ''>\$20,000'' to the annual household income question, we had to define all individuals as such.  We also collapsed the bottom two categories for ''Education Level'' into one category: ''less than 11th grade.''
+We also coarsened the categories for several of the variables.  We were interested in the ``Marital Status'' variable because it described whether or not the individual had a stable relationship in their life, so we collapsed it into ``married or living with partner'' vs ``else.''  Because a significant number of people replied ``\$20,000'' and ``\$20,000'' to the annual household income question, we decided to define all individuals as such, including those for which we had more detailed information.  We also collapsed the bottom two categories for ``Education Level'' into one category: ``less than 11th grade.''
 
 [INSERT TABLE]
 
@@ -70,15 +70,21 @@ Our observational data structure is $O=(W,A,Y) \sim P_0$. Our endogenous variabl
 \item Race/Ethnicity (1: Mexican American, 2: Other Hispanic, 3: Non-Hispanic White, 4: Non-Hispanic Black, 5: Other Race)
 \item Education Level (1: less than 11th grade (including 12th grade with no diploma), 3: high school grad/GED or equivalent, 4: some college or AA degree, 5: college graduate or above)
 \item Marital Status (1: married or living with partner, 0: else)
-\item Annual Household Income (0: <\$20,000, 1: >\$20,000)
-\item Body Mass Index (continuous values from ~15-50) [Note: this is a combination of subject weight and subject height]
+\item Annual Household Income (0: \$20,000, 1: \$20,000)
+\item Body Mass Index (continuous values from ~15-50) [Note: this is a combination of subject weight and subject height, computed according to the formula in [REFERENCE]]
 \end{itemize}
 
 $A$ is the individual's response to the survey question: ``During the past 12 months, have you tried to lose weight?", and $Y$ is the individual's response to ``How much sleep do you usually get at night on weekdays or workdays?''  
 
-Our exogenous variables are $U = (U_W, U_A, U_Y) \sim P_U$ (we make no assumption on the distribution).  
+Our exogenous variables are $U = (U_W, U_A, U_Y) \sim P_U$. We make no assumption on the joint distribution of $U$.  
 
-We make no exclusion restrictions on our data and no assumptions on the functional forms of $W$, $A$, or $Y$, so with mild temporal assumptions, one SCM is:
+We make no exclusion restrictions on our data and no assumptions on the functional forms of $W$, $A$, or $Y$.
+
+Because the data for $W$, $A$, and $Y$ was gathered simulateneously, temporal assumptions are needed to specify a causal model. We assume that all variables in $W$ occur temporally before the variables in $A$ and $Y$, and that $A$ occurs before $Y$. We first discuss temporal ordering between $W$ and $A$. First, note that the claim that the subjects gender, age, race, and BMI one year ago appear temporally before their decision to diet in the last twelve months is clearly true. When the interview was conducted also clearly occurs before the answer to the question in $A$, and thus we have temporal ordering here as well. Nonetheless, we do not necessarily temporal ordering for education level, marital status, and annual household income. All of the same observations hold for temporality between $W$ and $Y$.
+
+Temporal assumptions between $A$ and $Y$ are somewhat justifiable due to the wording of the question in $A$, specifically because the question specifically asks whether the individual has tried to lose weight in the last year. The variable $Y$, on the other hand, asks about average sleep habits, which we believe indicates a response to a more recent phenomenon than the last year. Nonetheless, violations of this temporality may occur if the individual started to try to lose weight recently or if the individual considers long-term (more than a month) sleep habits when answering the question in $Y$. Though our temporality between $A$ and $Y$ is by no means perfect, we believe this tempol ordering is far more likely than the reverse, namely $Y\rightarrow A$. 
+
+We now proceed as though our temporal assumptions are true, yielding the SCM:
 
 \begin{align*}
 W &= f_{W}(U_{W}) \\
