@@ -163,15 +163,11 @@ For identfiability, we need $U_{A} \indp U_{Y}$. That is, we need there to be no
     \end{tikzpicture}
 \end{center}
 
-%<<<<<<< HEAD
-We must also address the issue of positivity.  We do not believe that trying to lose weight or not trying to lose weight occurs with probability $0$ given any set of covariates $W$.  Thus we believe our theoretical positivity requirements are met.  However, practical positivity violations are very prevalent given that $W$ is high dimensional.  If we only consider those variables in $W$ that are categorical (Gender, Race/Ethnicity, Education Level, Marital Status), we only have two strata where no people tried to lose weight, as seen in Table \ref{tab:pv}.
-
-=======
 We must also address the issue of positivity.  We do not believe that trying to lose weight or not trying to lose weight occurs with probability $0$ given any set of covariates $W$ in our observed data distribution.  Thus we believe our theoretical positivity requirements are met.  However, practical positivity violations are very prevalent given that $W$ is high dimensional.  If we only consider those variables in $W$ that are categorical (Gender, Race/Ethnicity, Education Level, Marital Status), Table \ref{tab:prac.pos} shows that we only have two strata where no people tried to lose weight. When the categorical variable for interview period is also considered, thirteen strata have practical positivity violations.
 
 To get a better sense of the presence of practical positivity violations in our sample, see our discussion of the weight distribution in Figure \ref{fig:weight.dist} in Section \ref{sec:estimates}.
 
-%>>>>>>> 35f6133ea37faaff577951eef152a715a477b68e
+
 \begin{table}
 \begin{tabular}{| l | l | l | l |}
 \hline
@@ -181,13 +177,8 @@ Male & Other & Less than HS & Unmarried/not living with partner \\
 Female & Other & HS & Married/living with partner \\
 \hline
 \end{tabular}
-<<<<<<< HEAD
-\caption{Positivity Violations}
-\label{tab:pv}
-=======
 \caption{Practical positivity violations that results when the categorical variables Gender, Race/Ethnicity, Education Level, Marital Status are considered.}
 \label{tab:proc.pos}
->>>>>>> 35f6133ea37faaff577951eef152a715a477b68e
 \end{table}
 
 \section{Commit to a Statistical Model and Target Parameter of the Observed Data Distribution}
