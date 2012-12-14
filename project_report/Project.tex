@@ -41,8 +41,11 @@ NHANES is a multi-stage survey of the U.S. population that the Center for Diseas
 \label{fig:survey.design}
 \end{figure}
 
+NHANES is a multi-stage survey of the U.S. population that the Center for Disease Control and Prevention (CDC) conducts every 2 years.  They sample counties first, then ``segments'' (which can be as small as street blocks to as big as neighborhoods: determined by population density), then households, and finally individuals.  It aims to study a wide range of topics such as cardiovascular disease, obesity, physical fitness and physical functioning, reproductive history and sexual behavior, etc.  Each individual participates in an interview and a physical examination.  The sample is chosen to represent the U.S. population of all ages.  To produce reliable statistics, NHANES over-samples persons 60 and older, adolescents, African Americans, and Hispanics among others \cite{survey}. 
+
 However, to protect the privacy of the participants, the CDC strips the data of any information that would allow an analyst to find an individual.  This process mostly removes geographic identifiers; in particular, they remove all information about the first three stages of their multistage sampling procedure.  Unfortunately, this removal of information means that we cannot fully replicate their sampling methodology.
 
+In Table \ref{tab:Covariates}, we .....
 
 \begin{table}
 \begin{tabular}{| p{3cm} | p{7cm} |}
@@ -64,6 +67,8 @@ Annual Household Income & 14 levels, \$0-\$24,999 by \$5,000, \$25,000-\$74,999 
 Body Mass Index & continuous values from ~15-50 [Note: this is a combination of subject weight and subject height, computed according to the formula used by the CDC \cite{bmi}\\
 \hline
 \end{tabular}
+\caption{Baseline Covariates}
+\label{tab:Covariates}
 \end{table}
 
 This data set contains many individuals that have missing data.  The percentage missing in each covariate is in Table \ref{}[REFER TO TABLE].  We implemented a complete-case analysis instead of implementing an imputation procedure for this study. Specifically, we deleted all people who responded ``refused" or ``don't know" or are missing data for Annual Household Income, Marital Status, Education Level, and Interview Time Period.  We deleted all people who were younger than 25 and older than 79, all pregnant women, and all people who had ever been diagnosed by a doctor with a sleep disorder (or who responded that they ``don't know").  
@@ -78,6 +83,7 @@ We also coarsened the categories for several of the variables.  We were interest
 
 \section{Specify the Causal Model}
 
+Our observational data structure is $O=(W,A,Y) \sim P_0$. Our endogenous variables are $W$, $A$, and $Y$, where $W$ is as listed in Table \ref{tab:Covariates} with the modified categories specified in Section 1.
 
 $A$ is the individual's response to the survey question: ``During the past 12 months, have you tried to lose weight?", and $Y$ is the individual's response to ``How much sleep do you usually get at night on weekdays or workdays?''  
 
@@ -169,6 +175,7 @@ For identfiability, we need $U_{A} \indp U_{Y}$. That is, we need there to be no
 We must also address the issue of positivity.  We do not believe that trying to lose weight or not trying to lose weight occurs with probability $0$ given any set of covariates $W$ in our observed data distribution.  Thus we believe our theoretical positivity requirements are met.  However, practical positivity violations are very prevalent given that $W$ is high dimensional.  If we only consider those variables in $W$ that are categorical (Gender, Race/Ethnicity, Education Level, Marital Status), Table \ref{tab:prac.pos} shows that we only have two strata where no people tried to lose weight. When the categorical variable for interview period is also considered, thirteen strata have practical positivity violations.
 
 To get a better sense of the presence of practical positivity violations in our sample, see our discussion of the weight distribution in Figure \ref{fig:weight.dist} in Section \ref{sec:estimates}.
+
 
 \begin{table}
 \begin{tabular}{| l | l | l | l |}
