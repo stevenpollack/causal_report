@@ -82,7 +82,7 @@ Because the data for $W$, $A$, and $Y$ was gathered simultaneously, temporal ass
 
 Now, temporal assumptions between $A$ and $Y$ are somewhat justifiable due to the wording of the question in $A$. Specifically, the question asks whether the individual has tried to lose weight in the last year. The variable $Y$, on the other hand, asks about average sleep habits, which we believe indicates a response to a more recent phenomenon than the last year. Nonetheless, violations of this temporality may occur if the individual started to try to lose weight recently or if the individual considers long-term (more than a month) sleep habits when answering the question in $Y$. Though our temporality between $A$ and $Y$ is by no means perfect, we believe this temporal ordering is far more likely than the reverse, namely $Y\rightarrow A$. 
 
-We now proceed, taking our temporal assumptions as given, yielding the following SCM and the DAG as seen in Figure \ref{fig:DAG}:
+We now proceed, taking our temporal assumptions as given and the following SCM and the DAG as seen in Figure \ref{fig:DAG}:
 
 \begin{align*}
 W &= f_{W}(U_{W}) \\
@@ -160,6 +160,7 @@ Where $\hat{g}_n(a_i \mid W_i)$ is an estimate of $P_0(A=a_i|W_i)$.
 Where $\bar{Q}_{n}^{1}(a,W_i)$ is a targed estimate of $\E_0(Y|A=a,W)$ \cite{tmle}.
 \end{itemize}
 
+
 We obtain our estimates, $\hat{g}_{n}$ and $\bar{Q}_{n}^0$, using the candidate library in SuperLearner shown in Table \ref{tab:sl.lib} \cite{superlearner}. To calculate $\hat{g}_{n}$, we remove $A$ from all of the custom GLM's in the second column of Table \ref{tab:sl.lib}. Note that our SuperLearner includes both basic prediction algorithms such as SL.mean and more complex prediction algorithms such as SL.ridge and SL.glmnet. We have already described most of the algorithms listed here in a previous assignment, so will not do so here. We chose our custom GLM's to round out our library since fitting GLM's is a computationally inexpensive and easily implemented exploratory procedure. While the $Y \sim A \times Gender \times AgeMonths \times HHInc$ GLM would likely overfit the data if fit on the full data set, SuperLearner should overcome this problem data adaptively using cross-validation.
 
 \begin{table}[tbp]
@@ -219,6 +220,7 @@ Simple Sub & No & 0.00983 & (-0.05444, 0.07411) & (-0.04403, 0.07961) \\
 \end{table}
 
 \section{Interpret Results}
+
 Finally, we interpret our results and remind the reader that ``statistical significance'' is mentioned, it is with respect to the testing of hypotheses $H_0 : \psi_0 = 0$ against the alternative $H_1 : \psi_{0} \neq 0$ (at the 5\% significance level). We do not account for multiple testing here.
 
 When disregarding the survey weights, the estimate derived from simple substitution is 0.00983. This indicates that trying to lose weight does not have a measurable causal effect on average hours of sleep per night. Also note that the confidence interval for the simple substitution estimator contains $0$, showing that the the slight positive effect observed in the simple substitution estimator is not statistically significant.
