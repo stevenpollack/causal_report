@@ -226,7 +226,7 @@ We use bootstrap to compute confidence intervals for the three estimators. In a 
 
 Before presenting results, we present the empirical bootstrap sampling distributions in Figure \ref{fig:boot.distr} to show that all of the distributions look approximately normal.
 
-Point estimates for the three estimators that incorporate and do not incorporate survey weights can be seen in Table \ref{tab:ests}. Visualizations of the confidence intervals appear in Figure \ref{fig:cis}.
+Point estimates for the three estimators that incorporate and do not incorporate survey weights can be seen in Table \ref{tab:ests}. The estimates in Table \ref{tab:ests} can be interpreted as the difference between the expected average number of additional hours of sleep that each individual will have if the entire population tries to lose weight and if the entire population does not try to lose weight. Visualizations of the confidence intervals appear in Figure \ref{fig:cis}.
 
 \begin{table}
 \begin{tabular}{| l| l | l | l | l |}
@@ -248,7 +248,21 @@ Simple Sub & No & 0.00983 & (-0.05444, 0.07411) & (-0.04403, 0.07961) \\
 \end{table}
 
 \section{Interpret Results}
+Finally, we interpret our results. Note that when we talk about statistical significance here, we are referring to testing the null hypothesis $H_0 : \psi_0 = 0$ against the alternative $H_1 : \psi_1\not=0$ at the 5\% significance level. We do not account for multiple testing here.
 
+We first analyze the three estimators when they do not incorporate survey weights. The estimate derived from simple substitution is 0.00983, which essentially says that trying to lose weight does not have a measurable causal effect on average hours of sleep per night. Also note that the confidence interval for the simple substitution estimator contains $0$, showing that the the slight positive effect observed in the simple substitution estimator is not statistically significant.
+
+Note that the practical positivity violations in our sample immediately render IPTW an ineffective in this case because IPTW cannot extrapolate. Nonetheless, we will still analyze our IPTW results. Specifically, Figure \ref{fig:cis} shows that IPTW has the widest confidence interval among all estimators considered. Although both the normal and quantile confidence intervals are statistically significant for IPTW, we again note that the practical positivity violations render IPTW ineffective in this case. The point estimate of 0.38282 indicates that we expect that a particular individual will sleep an additional 23 minutes per weekday night on average if they diet versus if they do not diet.
+
+Next we interpret the TMLE output. The TMLE estimate of 0.08175 indicates that we expect that a particular individual will sleep an additional 5 minutes per weekday night on average if they diet versus if they do not diet. Unsurprisingly, both bootstrap confidence intervals (normal approximation and sample quantiles) contain $0$, and thus the result is not statistically significant.
+
+To make our results generalizable to a larger population, we consider the point estimates which incorporate survey weights. The simple substitution estimator increases slightly when the survey weights are included. Nonetheless, the estimate of 0.01733 is still close to zero and we do not suspect that it would be statistically significant if a proper bootstrapping procedure were applied. Nonetheless, we do not know how to apply such a procedure so do not do so here. The IPTW estimate decreases to 0.16785 when survey weights are included, but we have already seen that the practical and near-practical positivity violations give this estimate high variability anyway. Finally, the TMLE estimate remains mostly unchanged, increasing slightly to 0.09278. 
+
+Overall it does not appear that accounting for the survey weights has a major effect on our estimates. Recall, however, that more detailed knowledge of the sampling procedure would allow us to obtain more meaningful confidence interval estimates. Because we do not have such knowledge here, we remind the reader that our results should only be considered preliminary at best. Nonetheless, the statistical procedure outlined here can be meaningful as long as we recall the necessary but perhaps unrealistic temporal and identifiability assumptions. The results should only be interpreted as causal with extreme caution.
+
+The key limitation of our analysis is the lack of temporal ordering in our data set. Were we to repeat this observational study under ideal conditions, we would gather the information about whether or not an individual is attempting to lose weight at time zero, then a month later ask them how their sleep has been over the last month and whether or not they are still trying to lose weight. Under even more ideal conditions we would randomize assignment of the intervention, which in this case we would make a more specific form of dieting so that our question would be more well-defined. We would then track sleep habits over time.
+
+If this study were conducted more precisely, it would allow doctors to give patients more specific advice about the implications of their choice to diet on their sleeping habits.
 
 
 \bibliography{mybib}{}
@@ -285,7 +299,7 @@ Simple Sub & No & 0.00983 & (-0.05444, 0.07411) & (-0.04403, 0.07961) \\
 \begin{figure}
 \centering
 \includegraphics[width=0.75\textwidth]{figures/density-plot_ghat.pdf}
-\caption{Histogram and Density estimate of weights from SuperLearner output. Here we truncate at ****, but a summary of the full weight distribution can be seen in Table \ref{tab:weight.summary}.}
+\caption{Histogram and Density estimate of weights from SuperLearner output. Here we truncate the x-axis at 7, but a summary of the full weight distribution can be seen in Table \ref{tab:weight.summary}.}
 \label{fig:weight.dist}
 \end{figure}
 
@@ -302,8 +316,8 @@ Simple Sub & No & 0.00983 & (-0.05444, 0.07411) & (-0.04403, 0.07961) \\
 \includegraphics[width=0.75\textwidth]{figures/naiveBootstrapNormalCI.pdf} \\
 \includegraphics[width=0.75\textwidth]{figures/naiveBootstrapQuantileCI.pdf}
 \end{tabular}
-\caption{Plots of the 95\% 	confidence intervals for the estimates that do not incorporate survey weights. The confidence intervals derived from a normal approximation are on top, and those from the sample quantiles are below.}
-\label{fig:boot.distr}
+\caption{Plots of the 95\% confidence intervals for the estimates that do not incorporate survey weights. The confidence intervals derived from a normal approximation are on top, and those from the sample quantiles are below.}
+\label{fig:cis}
 \end{figure}
 
 \end{document}
