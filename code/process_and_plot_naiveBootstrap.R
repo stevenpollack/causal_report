@@ -1,6 +1,5 @@
-library(ggplot2)
-library(reshape2)
-library(plyr)
+require(ggplot2)
+require(reshape2)
 load("../causal_data/Rdata/naiveBootstrapData.R")
 
 # structure the data
@@ -54,4 +53,4 @@ normalBasedCI.plot <- ggplot(data=meltedBSData, aes(colour=estimator)) + stat_su
 
 ggsave(filename="./project_report/figures/naiveBootstrapNormalCI.pdf")
 
-
+save(quantileBasedCI.plot,normalBasedCI.plot,file="../causal_data/Rdata/naiveBootstrapPlots.Rdata")
