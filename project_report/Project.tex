@@ -24,23 +24,18 @@
 
 \section{Specify the Question}
 
-Recently researchers have tried to relate successful dieting to sleeping habits.  A relationship between obesity and sleep cycles has been established: both oversleeping and sleep deprivation are associated with an increased Body Mass Index (BMI) [REFERENCE]. 
+Recently researchers have tried to relate successful dieting to sleeping habits.  A relationship between obesity and sleep cycles has been established: both oversleeping \cite{sgain} and sleep deprivation \cite{sloss} are associated with an increased Body Mass Index (BMI). 
 
 Nonetheless, little work has been done to consider the opposite relationship. Specifically, we are interested in parsing the causal effect of attempting to lose weight on a person's sleep habits (average hours of sleep/night). While the health benefits associated with losing weight are well documented, it is not currently known if dieting has a negative, positive, or no effect on an individual's sleep habits.
 
-There are reasonable explanations for all possible outcomes of this analysis.  An increased interest in one's diet could indicate an increased interest in one's overall health.  Because doctors advise their patients to consistently get enough sleep each night to maintain a healthy lifestyle, it would be reasonable to see more hours of sleep in people who are dieting.  On the other hand, dieting has profound psychological and hormonal effects, which could cause a disruption to normal sleep patterns and result in less sleep on average [REFERENCE].
+There are reasonable explanations for all possible outcomes of this analysis.  An increased interest in one's diet could indicate an increased interest in one's overall health.  Because doctors advise their patients to consistently get enough sleep each night to maintain a healthy lifestyle, it would be reasonable to see more hours of sleep in people who are dieting.  On the other hand, dieting has profound psychological and hormonal effects \cite{hormone}, which could cause a disruption to normal sleep patterns and result in less sleep on average.
 
 For the purposes of this analysis, our population of interest is adults ages 25-79 who are not pregnant, have never been diagnosed by a doctor with a sleep disorder, and live in the United States.  We used the National Health and Nutrition Examination Survey (NHANES) data from 2009-2010 \cite{data} from the following questionnaires: ``Demographic Variables and Sample Weights," ``Weight History 16 Years and Older," and ``Sleep Disorders" \cite{questionnaire}.
 
-NHANES is a multi-stage survey of the U.S. population that the Center for Disease Control and Prevention (CDC) conducts every 2 years.  They sample counties first, then ``segments'' (which can be as small as street blocks to as big as neighborhoods: determined by population density), then households, and finally individuals.  It aims to study a wide range of topics such as cardiovascular disease, obesity, physical fitness and physical functioning, reproductive history and sexual behavior, etc.  Each individual participates in an interview and a physical examination.  The sample is chosen to represent the U.S. population of all ages.  To produce reliable statistics, NHANES over-samples persons 60 and older, adolescents, African Americans, and Hispanics among others [REFERENCE if not in other cited nhanes documents].  
+NHANES is a multi-stage survey of the U.S. population that the Center for Disease Control and Prevention (CDC) conducts every 2 years.  Figure \ref{fig:survey.design} shows the survey design as visualized on the NHANES website.  They sample counties first, then ``segments'' (which can be as small as street blocks to as big as neighborhoods: determined by population density), then households, and finally individuals.  It aims to study a wide range of topics such as cardiovascular disease, obesity, physical fitness and physical functioning, reproductive history and sexual behavior, etc.  Each individual participates in an interview and a physical examination.  The sample is chosen to represent the U.S. population of all ages.  To produce reliable statistics, NHANES over-samples persons 60 and older, adolescents, African Americans, and Hispanics among others \cite{survey}.  
 
-However, to protect the privacy of the participants, the CDC strips the data of any information that would allow an analyst to find an individual.  This process mostly removes geographic identifiers; in particular, they remove all information about the first three stages of their multistage sampling procedure.  Unfortunately, this removal of information means that we cannot fully replicate their sampling methodology.
-
-Our baseline covariates are:
-\vspace{0.5cm}
-
+\begin{center}
 \begin{table}
-\caption{Table: Baseline Covariates}
 \begin{tabular}{| p{3cm} | p{7cm} |}
 \hline
 When the interview was conducted & 1 for November 1, 2009 - April 30, 2010, 2 for May 1, 2009 - October 31, 2010\\
@@ -60,38 +55,20 @@ Annual Household Income & 14 levels, \$0-\$24,999 by \$5,000, \$25,000-\$74,999 
 Body Mass Index & continuous values from ~15-50 [Note: this is a combination of subject weight and subject height, computed according to the formula used by the CDC \cite{bmi}\\
 \hline
 \end{tabular}
+\caption{Baseline Covariates}
+\label{tab:Covariates}
 \end{table}
+\end{center}
 
+However, to protect the privacy of the participants, the CDC strips the data of any information that would allow an analyst to find an individual.  This process mostly removes geographic identifiers; in particular, they remove all information about the first three stages of their multistage sampling procedure.  Unfortunately, this removal of information means that we cannot fully replicate their sampling methodology. 
 
-\vspace{0.5cm}
-%\caption{These covariates were collected in an interview conducted by researchers at the CDC.}
+Table \ref{tab:Covariates} lists all of the baseline covariates we deemed relevant to our question.  Unfortunately, this data set contains many individuals that have missing data.  The percentage missing in each covariate is in Table \ref{}[REFER TO TABLE].  We implemented a complete-case analysis instead of implementing an imputation procedure for this study. Specifically, we deleted all people who responded ``refused" or ``don't know" or are missing data for Annual Household Income, Marital Status, Education Level, and Interview Time Period.  We deleted all people who were younger than 25 and older than 79, all pregnant women, and all people who had ever been diagnosed by a doctor with a sleep disorder (or who responded that they ``don't know").  
 
-This data set contains many individuals that have missing data.  The percentage missing in each covariate is in Table \ref{}[REFER TO TABLE].  We implemented a complete-case analysis instead of implementing an imputation procedure for this study. Specifically, we deleted all people who responded ``refused" or ``don't know" or are missing data for Annual Household Income, Marital Status, Education Level, and Interview Time Period.  We deleted all people who were younger than 25 and older than 79, all pregnant women, and all people who had ever been diagnosed by a doctor with a sleep disorder (or who responded that they ``don't know").  
-
-We also coarsened the categories for several of the variables.  We were interested in the ``Marital Status'' variable because it described whether or not the individual had a stable relationship in their life, so we collapsed it into ``married or living with partner'' vs ``else.''  Because a significant number of people replied ``\$20,000'' and ``\$20,000'' to the annual household income question, we decided to define all individuals as such, including those for which we had more detailed information.  We also collapsed the bottom two categories for ``Education Level'' into one category: ``less than 11th grade.''
-
-[INSERT TABLE]
-
-% \section{Potential Sources of Bias}
-% 
-% We would have liked to exclude all people who are on medications that cause excessive weight gain as a side effect, such as anxiety and depression medications.  Unfortunately, our data set does not include this covariate.  
-% 
-% Our annual household income data 
+We also coarsened the categories for several of the variables in Table \ref{tab:Covariates}.  We were interested in the ``Marital Status'' variable because it described whether or not the individual had a stable relationship in their life, so we collapsed it into ``married or living with partner'' vs ``else.''  Because a significant number of people replied ``\$20,000'' and ``\$20,000'' to the annual household income question, we decided to define all individuals as such, including those for which we had more detailed information.  We also collapsed the bottom two categories for ``Education Level'' into one category: ``less than 11th grade.''
 
 \section{Specify the Causal Model}
 
-Our observational data structure is $O=(W,A,Y) \sim P_0$. Our endogenous variables are $W$, $A$, and $Y$, where $W$ is as listed in Table 1.
-
-\begin{itemize}
-\item When the interview was conducted (1: November 1, 2009 - April 30, 2010, 2: May 1, 2009 - October 31, 2010)
-\item Subject Gender (1: Male, 2: Female)
-\item Age in Months (300-959, or 25-79 years)
-\item Race/Ethnicity (1: Mexican American, 2: Other Hispanic, 3: Non-Hispanic White, 4: Non-Hispanic Black, 5: Other Race)
-\item Education Level (1: less than 11th grade (including 12th grade with no diploma), 3: high school grad/GED or equivalent, 4: some college or AA degree, 5: college graduate or above)
-\item Marital Status (1: married or living with partner, 0: else)
-\item Annual Household Income (0: \$20,000, 1: \$20,000)
-\item Body Mass Index (continuous values from ~15-50) [Note: this is a combination of subject weight and subject height, computed according to the formula in [REFERENCE]]
-\end{itemize}
+Our observational data structure is $O=(W,A,Y) \sim P_0$. Our endogenous variables are $W$, $A$, and $Y$, where $W$ is as listed in Table \ref{tab:Covariates} with the modified categories specified in Section 1.
 
 $A$ is the individual's response to the survey question: ``During the past 12 months, have you tried to lose weight?", and $Y$ is the individual's response to ``How much sleep do you usually get at night on weekdays or workdays?''  
 
@@ -99,17 +76,159 @@ Our exogenous variables are $U = (U_W, U_A, U_Y) \sim P_U$. We make no assumptio
 
 We make no exclusion restrictions on our data and no assumptions on the functional forms of $W$, $A$, or $Y$.
 
-Because the data for $W$, $A$, and $Y$ was gathered simulateneously, temporal assumptions are needed to specify a causal model. We assume that all variables in $W$ occur temporally before the variables in $A$ and $Y$, and that $A$ occurs before $Y$. We first discuss temporal ordering between $W$ and $A$. First, note that the claim that the subjects gender, age, race, and BMI one year ago appear temporally before their decision to diet in the last twelve months is clearly true. When the interview was conducted also clearly occurs before the answer to the question in $A$, and thus we have temporal ordering here as well. Nonetheless, we do not necessarily temporal ordering for education level, marital status, and annual household income. All of the same observations hold for temporality between $W$ and $Y$.
+Because the data for $W$, $A$, and $Y$ was gathered simultaneously, temporal assumptions are needed to specify a causal model. We assume that all variables in $W$ occur temporally before the variables in $A$ and $Y$, and that $A$ occurs before $Y$. We first discuss temporal ordering between $W$ and $A$. First, note that the claim that the subjects gender, age, race, and BMI one year ago appear temporally before their decision to diet in the last twelve months is clearly true. When the interview was conducted also clearly occurs before the answer to the question in $A$, and thus we have temporal ordering here as well. Nonetheless, we do not necessarily temporal ordering for education level, marital status, and annual household income. All of the same observations hold for temporality between $W$ and $Y$.
 
-Temporal assumptions between $A$ and $Y$ are somewhat justifiable due to the wording of the question in $A$, specifically because the question specifically asks whether the individual has tried to lose weight in the last year. The variable $Y$, on the other hand, asks about average sleep habits, which we believe indicates a response to a more recent phenomenon than the last year. Nonetheless, violations of this temporality may occur if the individual started to try to lose weight recently or if the individual considers long-term (more than a month) sleep habits when answering the question in $Y$. Though our temporality between $A$ and $Y$ is by no means perfect, we believe this tempol ordering is far more likely than the reverse, namely $Y\rightarrow A$. 
+Temporal assumptions between $A$ and $Y$ are somewhat justifiable due to the wording of the question in $A$, specifically because the question specifically asks whether the individual has tried to lose weight in the last year. The variable $Y$, on the other hand, asks about average sleep habits, which we believe indicates a response to a more recent phenomenon than the last year. Nonetheless, violations of this temporality may occur if the individual started to try to lose weight recently or if the individual considers long-term (more than a month) sleep habits when answering the question in $Y$. Though our temporality between $A$ and $Y$ is by no means perfect, we believe this temporal ordering is far more likely than the reverse, namely $Y\rightarrow A$. 
 
-We now proceed as though our temporal assumptions are true, yielding the SCM:
+We now proceed as though our temporal assumptions are true, yielding the following SCM and the DAG as seen in Figure \ref{fig:DAG}:
 
 \begin{align*}
 W &= f_{W}(U_{W}) \\
 A &= f_{A}(W,U_{A}) \\
 Y &= f_{Y}(W,A,U_{Y}) \\
 \end{align*}
+
+
+\section{Specify the Causal Parameter of Interest}
+
+Since the intervention is a point treatment, our counterfactual is $Y_{a}$: the average sleep an individual would get, if they, possibly contrary to fact, had (or had not) attempted to lose weight.
+
+We are interested in measuring the average treatment effect (ATE) of attempted weight loss on average sleep:
+
+$$\Psi(P_{U,X}) = \E_{U,X}[Y_1] - \E_{U,X}[Y_0]$$
+
+\section{Assess Identifiability and Positivity}
+\label{sec:assumptions}
+
+Since $\Psi$ is the ATE, we need to satisfy backdoor criterion to identify G-computation with $\Psi$:
+   $$Y_{a} \indp A \mid W$$
+
+For identfiability, we need $U_{A} \indp U_{Y}$. [To see the modified DAG, see Figure \ref{fig:DAG1}].  That is, we need there to be no unmeasured common causes between attempting to lose weight and average number of hours of sleep per weekday night. We also need either 
+    \begin{itemize}
+      \item $U_{A} \indp U_{W}$: No unmeasured common causes between an individual's attempt to lose weight and their baseline covariates. This assumption is somewhat plausible given the number of baseline covariates measured, but may not hold.
+      \item $U_{W} \indp U_{Y}$: No unmeasured common causes between average hours of sleep per weekday night and baseline covariates. This assumption seems less plausible. For instance, an individual's stress level one year ago likely has a causal effect on their current relationship status and household income. This variable also likely has a causal relationship with current stress, which in turn may modify sleep habits.
+    \end{itemize}
+
+We must also address the issue of positivity.  We do not believe that trying to lose weight or not trying to lose weight occurs with probability $0$ given any set of covariates $W$ in our observed data distribution.  Thus we believe our theoretical positivity requirements are met.  However, practical positivity violations are very prevalent given that $W$ is high dimensional.  If we only consider those variables in $W$ that are categorical (Gender, Race/Ethnicity, Education Level, Marital Status), Table \ref{tab:prac.pos} shows that we only have two strata where no people tried to lose weight. When the categorical variable for interview period is also considered, thirteen strata have practical positivity violations.
+
+To get a better sense of the presence of practical positivity violations in our sample, see our discussion of the weight distribution in Figure \ref{fig:weight.dist}.
+
+\begin{center}
+\begin{table}
+\begin{tabular}{| l | l | l | l |}
+\hline
+ Gender & Race & Education & Marital Status \\
+\hline
+Male & Other & Less than HS & Unmarried/not living with partner \\
+Female & Other & HS & Married/living with partner \\
+\hline
+\end{tabular}
+\caption{Practical positivity violations that results when the categorical variables Gender, Race/Ethnicity, Education Level, Marital Status are considered.}
+\label{tab:proc.pos}
+\end{table}
+\end{center}
+
+\section{Commit to a Statistical Model and Target Parameter of the Observed Data Distribution}
+
+We still have no assumptions on the functional forms of $f_W, f_A$, and $f_Y$, so we choose the non-parametric model $\mathcal{M}$ of distributions compatible with our SCM.  
+
+We are still interested in the ATE, so our target parameter of the observed data distribution (assuming that we have a simple random sample of 4,077 individuals) is
+
+$$\psi_0 = \sum_{w}\Big[\E_0(Y|A=1,W=w)-E_0(Y|A=0,W=w)\Big]P_0(W=w)$$
+
+\section{Estimate the Chosen Parameter of the Observed Data Distribution}
+\label{sec:estimates}
+
+We proceed with estimation although we cannot fully accept $U_A \indp U_W$ or $U_W \indp U_Y$ as presented in Section \ref{sec:assumptions}. If the assumptions hold, then we know that our estimates are directly estimating a causal parameter. Otherwise, we consider the estimates valuable pieces of information, albeit with known shortcomings. We will estimate the ATE using the following estimators: 
+
+\begin{itemize}
+  \item Simple Substitution:
+    \[
+      \psi_0 \approx \frac{1}{n}\sum_{i=1}^{n}\Big(\bar{Q}_{n}^{0}(1,W_i) - \bar{Q}_{n}^{0}(0,W_i)\Big)
+    \]
+Where $\bar{Q}_{n}^{0}(a,W_i)$ is an estimate of $\E_0(Y|A=a,W)$.
+  \item IPTW:
+  \[
+    \psi_{0} \approx \frac{1}{n}\sum_{i=1}^{n} \left(\frac{I(A_i=1)}{\hat{g}_n(A_i \mid W_i)} - \frac{I(A_i=0)}{\hat{g}_n(A_i \mid W_i)} \right)Y_i
+  \]
+Where $\hat{g}_n(a_i \mid W_i)$ is an estimate of $P_0(A=a_i|W_i)$.
+  \item TMLE:
+  \[
+    \psi_{0} \approx \frac{1}{n}\sum_{i=1}^{n}\left( \bar{Q}_{n}^{1}(1,W_i) - \bar{Q}_{n}^{1}(0,W_i)\right)
+  \]
+Where $\bar{Q}_{n}^{1}(a,W_i)$ is a targed estimate of $\E_0(Y|A=a,W)$ \cite{tmle}.
+\end{itemize}
+
+We obtain our estimates of $\hat{g}$ and $\bar{Q}_n^0$ using the candidate library in SuperLearner shown in Table \ref{tab:sl.lib} \cite{superlearner}. To estimate $\hat{g}$, we remove $A$ from all of the custom GLM's in the second column of Table \ref{tab:sl.lib}. Note that our SuperLearner includes both basic prediction algorithms such as SL.mean and more complex prediction algorithms such as SL.ridge and SL.glmnet. We already described most of the algorithms listed here in a homework, so will not do so here. We chose our custom GLM's to round out our library since fitting GLM's is a computationally inexpensive procedure. While the $Y \sim A \times Gender \times AgeMonths \times HHInc$ GLM would likely overfit the data if fit on the full data set, SuperLearner should overcome this problem data adaptively using cross-validation.
+\begin{table}[h!]
+\begin{tabular}{l | l}
+Default Algorithms & Custom GLM's \\
+\hline
+SL.mean & $Y \sim A$ \\
+SL.earth & $Y \sim A \times Gender \times RaceEth + MarStat \times HHInc$ \\
+SL.rpartPrune & $+ AgeMonths$:$Gender + EduLevel + AgeMonths $ \\
+SL.ridge & $Y \sim A \times Gender \times MarStat$ \\
+SL.glmnet &  $Y \sim A \times Gender \times AgeMonths \times HHInc$ \\
+\end{tabular}
+\caption{SuperLearner library. Note that the library includes both simple functions such as SL.mean and the custom $Y\sim A$ and higher level functions such as SL.earth (similar to SL.polymars) and SL.rpartPrune.}
+\label{tab:sl.lib}
+\end{table}
+
+Figure \ref{fig:weight.dist} shows that the weight distribution is fairly controlled, without too many large outliers. Because we truncated the x-axis for Figure \ref{fig:weight.dist} to make visualizing the distribution more feasible, we also show the summary of the distribution in Table \ref{tab:weight.summary}. Specifically, we see that the weight distribution is skewed to the right.
+
+\begin{table}
+\centering
+\begin{tabular}{cccccc}
+  \hline
+ Min. & 25\% & Median & Mean & 75\% & Max. \\ 
+  \hline
+ 1.037   & 1.281   & 1.587   & 1.952   &  2.198   &  35.335   \\ 
+   \hline
+\end{tabular}
+\caption{Summary of distribution of weights. Note that most of the weights appear to be fairly small, with a mean of 1.952 and a median of 1.582. This discrepancy between mean and median indicates a right-skewed distribution, as can be seen in Figure \ref{fig:weight.dist}. Nonetheless, the largest weight is only 35.335.}
+\label{tab:weight.summary}
+\end{table}
+
+We use bootstrap to compute confidence intervals for the three estimators. In a follow-up analysis we include the survey weights to obtain point estimates for the simple substition, IPTW, and TMLE estimators. We do not attempt bootstrap to bootstrap with weights because we were not sure how to account for the weights in the bootstrap. Rather than present uninterpretable weighted confidence intervals, we will simply present the weighted point estimates and compare them to the estimates that do not incorporate the survey weights.
+
+Before presenting results, we present the empirical bootstrap sampling distributions in Figure \ref{fig:boot.distr} to show that all of the distributions look approximately normal.
+
+Point estimates for the three estimators that incorporate and do not incorporate survey weights can be seen in Table \ref{tab:ests}. Visualizations of the confidence intervals appear in Figure \ref{fig:cis}.
+
+\begin{table}
+\begin{tabular}{| l| l | l | l | l |}
+  \hline
+ & Weights? & Estimate & 95\% Normal CI & 95\% Quantile CI \\ 
+  \hline
+Simple Sub & No & 0.00983 & (-0.05444, 0.07411) & (-0.04403, 0.07961) \\ 
+& Yes & 0.01733 & & \\
+\hline
+  IPTW & No & 0.38282 & (0.13473, 0.63091) & (0.40209, 0.89568) \\ 
+& Yes & 0.16785 & & \\
+\hline
+  TMLE & No & 0.08175 & (-0.01418, 0.17769) & (-0.01667, 0.16519) \\ 
+& Yes & 0.09278 & & \\
+   \hline
+\end{tabular}
+\caption{Point estimates and 95\% confidence intervals for the three estimators considered. Point estimates for the estimators that incorporate survey weights are also reported. Note that the TMLE estimate remains fairly similar while the simple substitution and IPTW estimators increase and decrease, respectively.}
+\label{tab:ests}
+\end{table}
+
+\section{Interpret Results}
+
+
+
+\bibliography{mybib}{}
+\bibliographystyle{plain}
+
+
+\section*{Appendix.}
+\begin{figure}
+\centering
+\includegraphics[width=0.75\textwidth]{figures/Survey_Design.PNG}
+\caption{Multistage survey design used by NHANES. Note that the survey structure was Counties-Segments-Households-Individuals, in order of increasing specificity.}
+\label{fig:survey.design}
+\end{figure}
 
 \begin{figure}[h]
     \centering
@@ -131,28 +250,8 @@ Y &= f_{Y}(W,A,U_{Y}) \\
   \label{fig:DAG}
 \end{figure}
 
-
-\section{Specify the Causal Parameter of Interest}
-
-Since the intervention is a point treatment, our counterfactual is $Y_{a}$: the average sleep an individual would get, if they, possibly contrary to fact, had (or had not) attempted to lose weight.
-
-We are interested in measuring the average treatment effect (ATE) of attempted weight loss on average sleep:
-
-$$\Psi(P_{U,X}) = \E_{U,X}[Y_1] - \E_{U,X}[Y_0]$$
-
-\section{Assess Identifiability and Positivity}
-\label{sec:assumptions}
-
-Since $\Psi$ is the ATE, we need to satisfy backdoor criterion to identify G-computation with $\Psi$:
-   $$Y_{a} \indp A \mid W$$
-
-For identfiability, we need $U_{A} \indp U_{Y}$. That is, we need there to be no unmeasured common causes between attempting to lose weight and average number of hours of sleep per weekday night. We also need either
-    \begin{itemize}
-      \item $U_{A} \indp U_{W}$: No unmeasured common causes between an individual's attempt to lose weight and their baseline covariates. This assumption is somewhat plausible given the number of baseline covariates measured, but may not hold.
-      \item $U_{W} \indp U_{Y}$: No unmeasured common causes between average hours of sleep per weekday night and baseline covariates. This assumption seems less plausible. For instance, an individual's stress level one year ago likely has a causal effect on their current relationship status and household income. This variable also likely has a causal relationship with current stress, which in turn may modify sleep habits.
-    \end{itemize}
-
 \begin{center}
+\begin{figure}
     \begin{tikzpicture}[->, shorten >=2pt, >=stealth, node distance=1cm,
                         pil/.style={->,thick,shorten =2pt,},scale=0.65,font=\scriptsize
                         ]
@@ -178,70 +277,33 @@ For identfiability, we need $U_{A} \indp U_{Y}$. That is, we need there to be no
     postaction={decorate,
     decoration={raise=-4pt,text along path,text align=center,text={???}}}] (UW) to [out=330,in=95] (UY);
     \end{tikzpicture}
+\caption{DAG showing the backdoor criterion}
+\label{fig:DAG1}
+\end{figure}
 \end{center}
 
-We must also address the issue of positivity.  We do not believe that trying to lose weight or not trying to lose weight occurs with probability $0$ given any set of covariates $W$.  Thus we believe our theoretical positivity requirements are met.  However, practical positivity violations are very prevalent given that $W$ is high dimensional.  If we only consider those variables in $W$ that are categorical (Gender, Race/Ethnicity, Education Level, Marital Status), we only have two strata where no people tried to lose weight:
+\begin{figure}
+\centering
+\includegraphics[width=0.75\textwidth]{figures/density-plot_ghat.pdf}
+\caption{Histogram and Density estimate of weights from SuperLearner output. Here we truncate at ****, but a summary of the full weight distribution can be seen in Table \ref{tab:weight.summary}.}
+\label{fig:weight.dist}
+\end{figure}
 
-\begin{tabular}{| l | l | l | l |}
-\hline
- Gender & Race & Education & Marital Status \\
-\hline
-Male & Other & Less than HS & Unmarried/not living with partner \\
-Female & Other & HS & Married/living with partner \\
-\hline
+\begin{figure}
+\centering
+\includegraphics[width=0.75\textwidth]{figures/naiveBootstrapDensities.pdf}
+\caption{Density estimates of the bootstrap distributions. Note that all of the distributions look approximately normal.}
+\label{fig:boot.distr}
+\end{figure}
+
+\begin{figure}
+\centering
+\begin{tabular}{c}
+\includegraphics[width=0.75\textwidth]{figures/naiveBootstrapNormalCI.pdf} \\
+\includegraphics[width=0.75\textwidth]{figures/naiveBootstrapQuantileCI.pdf}
 \end{tabular}
-
-\section{Commit to a Statistical Model and Target Parameter of the Observed Data Distribution}
-
-We still have no assumptions on the functional forms of $f_W, f_A$, and $f_Y$, so we choose the non-parametric model $\mathcal{M}$ of distributions compatible with our SCM.  
-
-We are still interested in the ATE, so our target parameter of the observed data distribution (assuming that we have a simple random sample of 4,077 individuals) is
-
-$$\psi_0 = \sum_{w}\Big[\E_0(Y|A=1,W=w)-E_0(Y|A=0,W=w)\Big]P_0(W=w)$$
-
-\section{Estimate the Chosen Parameter of the Observed Data Distribution}
-
-We proceed with estimation even if cannot fully accept $U_A \indp U_W$ or $U_W \indp U_Y$ as presented in Section \ref{sec:assumptions}. If the assumptions hold, then we know that our estimates are directly estimating a causal parameter. Otherwise, we consider the estimates valuable pieces of information, albeit with known shortcomings. We will estimate the ATE in the following ways: 
-
-\begin{itemize}
-  \item Simple Substitution:
-    \[
-      \psi_0 \approx \frac{1}{n}\sum_{i=1}^{n}\Big(\bar{Q}_{n}^{0}(1,W_i) - \bar{Q}_{n}^{0}(0,W_i)\Big)
-    \]
-Where $\bar{Q}_{n}^{0}(a,W_i)$ is an estimate of $\E_0(Y|A=a,W)$.
-  \item IPTW:
-  \[
-    \psi_{0} \approx \frac{1}{n}\sum_{i=1}^{n} \left(\frac{I(A_i=1)}{\hat{g}_n(A_i \mid W_i)} - \frac{I(A_i=0)}{\hat{g}_n(A_i \mid W_i)} \right)Y_i
-  \]
-Where $\hat{g}_n(a_i \mid W_i)$ is an estimate of $P_0(A=a_i|W_i)$.
-  \item TMLE:
-  \[
-    \psi_{0} \approx \frac{1}{n}\sum_{i=1}^{n}\left( \bar{Q}_{n}^{1}(1,W_i) - \bar{Q}_{n}^{1}(0,W_i)\right)
-  \]
-Where $\bar{Q}_{n}^{1}(a,W_i)$ is a targed estimate of $\E_0(Y|A=a,W)$ \cite{tmle}.
-\end{itemize}
-
-We obtain our estimates of $\hat{g}$ and $\bar{Q}_n^0$ using the candidate library in SuperLearner shown in Table \ref{tab:sl.lib} \cite{superlearner}.
-\begin{table}[ht!]
-\begin{tabular}{l | l}
-Default Algorithms & Custom GLM's \\
-\hline
-SL.mean & $Y \sim A$ \\
-SL.earth & $Y \sim A \times Gender \times RaceEth + MarStat \times HHInc$ \\
-SL.rpartPrune & $+ AgeMonths$:$Gender + EduLevel + AgeMonths $ \\
-SL.ridge & $Y \sim A \times Gender \times MarStat$ \\
-SL.glmnet &  $Y \sim A \times Gender \times AgeMonths \times HHInc$ \\
-\end{tabular}
-\caption{SuperLearner library. Note that the library includes both simple functions such as SL.mean and the custom $Y\sim A$ and higher level functions such as SL.earth (similar to SL.polymars) and SL.rpartPrune.}
-\label{tab:sl.lib}
-\end{table}
-
-\section{Interpret Results}
-
-
-
-\bibliography{mybib}{}
-\bibliographystyle{plain}
-
+\caption{Plots of the 95\% 	confidence intervals for the estimates that do not incorporate survey weights. The confidence intervals derived from a normal approximation are on top, and those from the sample quantiles are below.}
+\label{fig:boot.distr}
+\end{figure}
 
 \end{document}

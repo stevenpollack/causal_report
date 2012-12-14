@@ -6,5 +6,5 @@
 *.aux
 *.log
 *.DS_Store
-.Rproj.user
-.gitignore
+*.Rproj.user
+*.gitignore
