@@ -32,14 +32,7 @@ There are reasonable explanations for all possible outcomes of this analysis.  A
 
 For the purposes of this analysis, our population of interest is adults ages 25-79 who are not pregnant, have never been diagnosed by a doctor with a sleep disorder, and live in the United States.  We used the National Health and Nutrition Examination Survey (NHANES) data from 2009-2010 \cite{data} from the following questionnaires: ``Demographic Variables and Sample Weights," ``Weight History 16 Years and Older," and ``Sleep Disorders" \cite{questionnaire}.
 
-NHANES is a multi-stage survey of the U.S. population that the Center for Disease Control and Prevention (CDC) conducts every 2 years.  They sample counties first, then ``segments'' (which can be as small as street blocks to as big as neighborhoods: determined by population density), then households, and finally individuals.  It aims to study a wide range of topics such as cardiovascular disease, obesity, physical fitness and physical functioning, reproductive history and sexual behavior, etc.  Each individual participates in an interview and a physical examination.  The sample is chosen to represent the U.S. population of all ages.  To produce reliable statistics, NHANES over-samples persons 60 and older, adolescents, African Americans, and Hispanics among others \cite{survey}.  
-
-\begin{figure}
-\centering
-\includegraphics[width=0.75\textwidth]{figures/Survey_Design.PNG}
-\caption{Multistage survey design used by NHANES. Note that the survey structure was Counties-Segments-Households-Individuals, in order of increasing specificity.}
-\label{fig:survey.design}
-\end{figure}
+NHANES is a multi-stage survey of the U.S. population that the Center for Disease Control and Prevention (CDC) conducts every 2 years.  Figure \ref{fig:survey.design} shows the survey design as visualized on the NHANES website.  They sample counties first, then ``segments'' (which can be as small as street blocks to as big as neighborhoods: determined by population density), then households, and finally individuals.  It aims to study a wide range of topics such as cardiovascular disease, obesity, physical fitness and physical functioning, reproductive history and sexual behavior, etc.  Each individual participates in an interview and a physical examination.  The sample is chosen to represent the U.S. population of all ages.  To produce reliable statistics, NHANES over-samples persons 60 and older, adolescents, African Americans, and Hispanics among others \cite{survey}.  
 
 However, to protect the privacy of the participants, the CDC strips the data of any information that would allow an analyst to find an individual.  This process mostly removes geographic identifiers; in particular, they remove all information about the first three stages of their multistage sampling procedure.  Unfortunately, this removal of information means that we cannot fully replicate their sampling methodology.
 
@@ -100,26 +93,6 @@ W &= f_{W}(U_{W}) \\
 A &= f_{A}(W,U_{A}) \\
 Y &= f_{Y}(W,A,U_{Y}) \\
 \end{align*}
-
-\begin{figure}[h]
-    \centering
-    \begin{tikzpicture}[->, shorten >=2pt, >=stealth, node distance=1cm,
-                        pil/.style={->,thick,shorten =2pt,},scale=0.65
-                        ]
-    \node[circle,draw] at (4,2) (1) {W};
-    \node[circle,draw] at (2,0) (2) {A};
-    \node[circle,draw] at (6,0) (3) {Y};
-    \node[circle,draw] at (4,4) (4) {U};
-    \draw[->] (1) to [out=195,in=95] (2);
-    \draw[->] (2.east) -- (3.west);
-    \draw[->] (1) to [out=345,in=95] (3);
-    \draw[->] (4.south) -- (1.north);
-    \draw[->] (4) to [out=210,in=165] (2);
-    \draw[->] (4) to [out=330,in=30] (3);
-    \end{tikzpicture}
-  \caption{Simplified DAG -- no independence assumptions on $U$'s.}
-  \label{fig:DAG}
-\end{figure}
 
 
 \section{Specify the Causal Parameter of Interest}
@@ -236,13 +209,6 @@ SL.glmnet &  $Y \sim A \times Gender \times AgeMonths \times HHInc$ \\
 
 Figure \ref{fig:weight.dist} shows that the weight distribution is fairly controlled, without too many large outliers. Because we truncated the x-axis for Figure \ref{fig:weight.dist} to make visualizing the distribution more feasible, we also show the summary of the distribution in Table \ref{tab:weight.summary}. Specifically, we see that the weight distribution is skewed to the right.
 
-\begin{figure}
-\centering
-\includegraphics[width=0.75\textwidth]{figures/density-plot_ghat.pdf}
-\caption{Histogram and Density estimate of weights from SuperLearner output. Here we truncate at ****, but a summary of the full weight distribution can be seen in Table \ref{tab:weight.summary}.}
-\label{fig:weight.dist}
-\end{figure}
-
 \begin{table}
 \centering
 \begin{tabular}{cccccc}
@@ -259,13 +225,6 @@ Figure \ref{fig:weight.dist} shows that the weight distribution is fairly contro
 We use bootstrap to compute confidence intervals for the three estimators. In a follow-up analysis we include the survey weights to obtain point estimates for the simple substition, IPTW, and TMLE estimators. We do not attempt bootstrap to bootstrap with weights because we were not sure how to account for the weights in the bootstrap. Rather than present uninterpretable weighted confidence intervals, we will simply present the weighted point estimates and compare them to the estimates that do not incorporate the survey weights.
 
 Before presenting results, we present the empirical bootstrap sampling distributions in Figure \ref{fig:boot.distr} to show that all of the distributions look approximately normal.
-
-\begin{figure}
-\centering
-\includegraphics[width=0.75\textwidth]{figures/naiveBootstrapDensities.pdf}
-\caption{Density estimates of the bootstrap distributions. Note that all of the distributions look approximately normal.}
-\label{fig:boot.distr}
-\end{figure}
 
 Point estimates for the three estimators that incorporate and do not incorporate survey weights can be seen in Table \ref{tab:ests}. Visualizations of the confidence intervals appear in Figure \ref{fig:cis}.
 
@@ -288,6 +247,55 @@ Simple Sub & No & 0.00983 & (-0.05444, 0.07411) & (-0.04403, 0.07961) \\
 \label{tab:ests}
 \end{table}
 
+\section{Interpret Results}
+
+
+
+\bibliography{mybib}{}
+\bibliographystyle{plain}
+
+\section*{Appendix.}
+\begin{figure}
+\centering
+\includegraphics[width=0.75\textwidth]{figures/Survey_Design.PNG}
+\caption{Multistage survey design used by NHANES. Note that the survey structure was Counties-Segments-Households-Individuals, in order of increasing specificity.}
+\label{fig:survey.design}
+\end{figure}
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[->, shorten >=2pt, >=stealth, node distance=1cm,
+                        pil/.style={->,thick,shorten =2pt,},scale=0.65
+                        ]
+    \node[circle,draw] at (4,2) (1) {W};
+    \node[circle,draw] at (2,0) (2) {A};
+    \node[circle,draw] at (6,0) (3) {Y};
+    \node[circle,draw] at (4,4) (4) {U};
+    \draw[->] (1) to [out=195,in=95] (2);
+    \draw[->] (2.east) -- (3.west);
+    \draw[->] (1) to [out=345,in=95] (3);
+    \draw[->] (4.south) -- (1.north);
+    \draw[->] (4) to [out=210,in=165] (2);
+    \draw[->] (4) to [out=330,in=30] (3);
+    \end{tikzpicture}
+  \caption{Simplified DAG -- no independence assumptions on $U$'s.}
+  \label{fig:DAG}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.75\textwidth]{figures/density-plot_ghat.pdf}
+\caption{Histogram and Density estimate of weights from SuperLearner output. Here we truncate at ****, but a summary of the full weight distribution can be seen in Table \ref{tab:weight.summary}.}
+\label{fig:weight.dist}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=0.75\textwidth]{figures/naiveBootstrapDensities.pdf}
+\caption{Density estimates of the bootstrap distributions. Note that all of the distributions look approximately normal.}
+\label{fig:boot.distr}
+\end{figure}
+
 \begin{figure}
 \centering
 \begin{tabular}{c}
@@ -297,13 +305,5 @@ Simple Sub & No & 0.00983 & (-0.05444, 0.07411) & (-0.04403, 0.07961) \\
 \caption{Plots of the 95\% 	confidence intervals for the estimates that do not incorporate survey weights. The confidence intervals derived from a normal approximation are on top, and those from the sample quantiles are below.}
 \label{fig:boot.distr}
 \end{figure}
-
-\section{Interpret Results}
-
-
-
-\bibliography{mybib}{}
-\bibliographystyle{plain}
-
 
 \end{document}
