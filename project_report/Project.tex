@@ -34,10 +34,7 @@ For the purposes of this analysis, our population of interest is adults ages 25-
 
 NHANES is a multi-stage survey of the U.S. population that the Center for Disease Control and Prevention (CDC) conducts every 2 years.  Figure \ref{fig:survey.design} shows the survey design as visualized on the NHANES website.  They sample counties first, then ``segments'' (which can be as small as street blocks to as big as neighborhoods: determined by population density), then households, and finally individuals.  It aims to study a wide range of topics such as cardiovascular disease, obesity, physical fitness and physical functioning, reproductive history and sexual behavior, etc.  Each individual participates in an interview and a physical examination.  The sample is chosen to represent the U.S. population of all ages.  To produce reliable statistics, NHANES over-samples persons 60 and older, adolescents, African Americans, and Hispanics among others \cite{survey}.  
 
-However, to protect the privacy of the participants, the CDC strips the data of any information that would allow an analyst to find an individual.  This process mostly removes geographic identifiers; in particular, they remove all information about the first three stages of their multistage sampling procedure.  Unfortunately, this removal of information means that we cannot fully replicate their sampling methodology.
-
-In Table \ref{tab:Covariates}, we .....
-
+\begin{center}
 \begin{table}
 \begin{tabular}{| p{3cm} | p{7cm} |}
 \hline
@@ -61,16 +58,13 @@ Body Mass Index & continuous values from ~15-50 [Note: this is a combination of 
 \caption{Baseline Covariates}
 \label{tab:Covariates}
 \end{table}
+\end{center}
 
-This data set contains many individuals that have missing data.  The percentage missing in each covariate is in Table \ref{}[REFER TO TABLE].  We implemented a complete-case analysis instead of implementing an imputation procedure for this study. Specifically, we deleted all people who responded ``refused" or ``don't know" or are missing data for Annual Household Income, Marital Status, Education Level, and Interview Time Period.  We deleted all people who were younger than 25 and older than 79, all pregnant women, and all people who had ever been diagnosed by a doctor with a sleep disorder (or who responded that they ``don't know").  
+However, to protect the privacy of the participants, the CDC strips the data of any information that would allow an analyst to find an individual.  This process mostly removes geographic identifiers; in particular, they remove all information about the first three stages of their multistage sampling procedure.  Unfortunately, this removal of information means that we cannot fully replicate their sampling methodology. 
 
-We also coarsened the categories for several of the variables.  We were interested in the ``Marital Status'' variable because it described whether or not the individual had a stable relationship in their life, so we collapsed it into ``married or living with partner'' vs ``else.''  Because a significant number of people replied ``\$20,000'' and ``\$20,000'' to the annual household income question, we decided to define all individuals as such, including those for which we had more detailed information.  We also collapsed the bottom two categories for ``Education Level'' into one category: ``less than 11th grade.''
+Table \ref{tab:Covariates} lists all of the baseline covariates we deemed relevant to our question.  Unfortunately, this data set contains many individuals that have missing data.  The percentage missing in each covariate is in Table \ref{}[REFER TO TABLE].  We implemented a complete-case analysis instead of implementing an imputation procedure for this study. Specifically, we deleted all people who responded ``refused" or ``don't know" or are missing data for Annual Household Income, Marital Status, Education Level, and Interview Time Period.  We deleted all people who were younger than 25 and older than 79, all pregnant women, and all people who had ever been diagnosed by a doctor with a sleep disorder (or who responded that they ``don't know").  
 
-% \section{Potential Sources of Bias}
-% 
-% We would have liked to exclude all people who are on medications that cause excessive weight gain as a side effect, such as anxiety and depression medications.  Unfortunately, our data set does not include this covariate.  
-% 
-% Our annual household income data 
+We also coarsened the categories for several of the variables in Table \ref{tab:Covariates}.  We were interested in the ``Marital Status'' variable because it described whether or not the individual had a stable relationship in their life, so we collapsed it into ``married or living with partner'' vs ``else.''  Because a significant number of people replied ``\$20,000'' and ``\$20,000'' to the annual household income question, we decided to define all individuals as such, including those for which we had more detailed information.  We also collapsed the bottom two categories for ``Education Level'' into one category: ``less than 11th grade.''
 
 \section{Specify the Causal Model}
 
@@ -82,11 +76,11 @@ Our exogenous variables are $U = (U_W, U_A, U_Y) \sim P_U$. We make no assumptio
 
 We make no exclusion restrictions on our data and no assumptions on the functional forms of $W$, $A$, or $Y$.
 
-Because the data for $W$, $A$, and $Y$ was gathered simulateneously, temporal assumptions are needed to specify a causal model. We assume that all variables in $W$ occur temporally before the variables in $A$ and $Y$, and that $A$ occurs before $Y$. We first discuss temporal ordering between $W$ and $A$. First, note that the claim that the subjects gender, age, race, and BMI one year ago appear temporally before their decision to diet in the last twelve months is clearly true. When the interview was conducted also clearly occurs before the answer to the question in $A$, and thus we have temporal ordering here as well. Nonetheless, we do not necessarily temporal ordering for education level, marital status, and annual household income. All of the same observations hold for temporality between $W$ and $Y$.
+Because the data for $W$, $A$, and $Y$ was gathered simultaneously, temporal assumptions are needed to specify a causal model. We assume that all variables in $W$ occur temporally before the variables in $A$ and $Y$, and that $A$ occurs before $Y$. We first discuss temporal ordering between $W$ and $A$. First, note that the claim that the subjects gender, age, race, and BMI one year ago appear temporally before their decision to diet in the last twelve months is clearly true. When the interview was conducted also clearly occurs before the answer to the question in $A$, and thus we have temporal ordering here as well. Nonetheless, we do not necessarily temporal ordering for education level, marital status, and annual household income. All of the same observations hold for temporality between $W$ and $Y$.
 
-Temporal assumptions between $A$ and $Y$ are somewhat justifiable due to the wording of the question in $A$, specifically because the question specifically asks whether the individual has tried to lose weight in the last year. The variable $Y$, on the other hand, asks about average sleep habits, which we believe indicates a response to a more recent phenomenon than the last year. Nonetheless, violations of this temporality may occur if the individual started to try to lose weight recently or if the individual considers long-term (more than a month) sleep habits when answering the question in $Y$. Though our temporality between $A$ and $Y$ is by no means perfect, we believe this tempol ordering is far more likely than the reverse, namely $Y\rightarrow A$. 
+Temporal assumptions between $A$ and $Y$ are somewhat justifiable due to the wording of the question in $A$, specifically because the question specifically asks whether the individual has tried to lose weight in the last year. The variable $Y$, on the other hand, asks about average sleep habits, which we believe indicates a response to a more recent phenomenon than the last year. Nonetheless, violations of this temporality may occur if the individual started to try to lose weight recently or if the individual considers long-term (more than a month) sleep habits when answering the question in $Y$. Though our temporality between $A$ and $Y$ is by no means perfect, we believe this temporal ordering is far more likely than the reverse, namely $Y\rightarrow A$. 
 
-We now proceed as though our temporal assumptions are true, yielding the SCM:
+We now proceed as though our temporal assumptions are true, yielding the following SCM and the DAG as seen in Figure \ref{fig:DAG}:
 
 \begin{align*}
 W &= f_{W}(U_{W}) \\
@@ -109,45 +103,17 @@ $$\Psi(P_{U,X}) = \E_{U,X}[Y_1] - \E_{U,X}[Y_0]$$
 Since $\Psi$ is the ATE, we need to satisfy backdoor criterion to identify G-computation with $\Psi$:
    $$Y_{a} \indp A \mid W$$
 
-For identfiability, we need $U_{A} \indp U_{Y}$. That is, we need there to be no unmeasured common causes between attempting to lose weight and average number of hours of sleep per weekday night. We also need either
+For identfiability, we need $U_{A} \indp U_{Y}$. [To see the modified DAG, see Figure \ref{fig:DAG1}].  That is, we need there to be no unmeasured common causes between attempting to lose weight and average number of hours of sleep per weekday night. We also need either 
     \begin{itemize}
       \item $U_{A} \indp U_{W}$: No unmeasured common causes between an individual's attempt to lose weight and their baseline covariates. This assumption is somewhat plausible given the number of baseline covariates measured, but may not hold.
       \item $U_{W} \indp U_{Y}$: No unmeasured common causes between average hours of sleep per weekday night and baseline covariates. This assumption seems less plausible. For instance, an individual's stress level one year ago likely has a causal effect on their current relationship status and household income. This variable also likely has a causal relationship with current stress, which in turn may modify sleep habits.
     \end{itemize}
 
-\begin{center}
-    \begin{tikzpicture}[->, shorten >=2pt, >=stealth, node distance=1cm,
-                        pil/.style={->,thick,shorten =2pt,},scale=0.65,font=\scriptsize
-                        ]
-    \node (A) [circle,draw] {A};
-    \node (W) [circle,draw,above right=of A] {W};
-    \node (Y) [circle,draw,below right=of W] {Y};
-    \node (UA) [circle,draw,below left=of A] {$U_A$};
-    \node (UW) [circle,draw,above=of W] {$U_W$};
-    \node (UY) [circle,draw,below right=of Y] {$U_Y$};
-    \draw[->] (W) to [out=195,in=95] (A);
-    \draw[->] (A.east) -- (Y.west);
-    \draw[->] (W) to [out=345,in=95] (Y);
-    \draw[->] (UW.south) -- (W.north);
-    \draw[->] (UA) to [out=45,in=225] (A);
-    \draw[->] (UY) to [out=135,in=315] (Y);
-    \draw[dashed,<->] (UW) to [out=330,in=95] (UY);
-    %\pgftransformyshift{-.65cm}
-    %\draw[decoration={text along path, text={X},text align={center}},decorate] (UA) to
-                      [out=345,in=195] (UY);
-    \draw[dashed,<->,postaction={decorate,decoration={raise=-4pt,text along path,text align=center,text={X}}}] (UA) to [out=345,in=195] (UY);
-    \draw[dashed,<->,postaction={decorate,decoration={raise=-4pt,reverse path,text along path,text align=center,text={???}}}] (UW) to [out=210,in=85] (UA);
-    \draw[dashed,<->,
-    postaction={decorate,
-    decoration={raise=-4pt,text along path,text align=center,text={???}}}] (UW) to [out=330,in=95] (UY);
-    \end{tikzpicture}
-\end{center}
-
 We must also address the issue of positivity.  We do not believe that trying to lose weight or not trying to lose weight occurs with probability $0$ given any set of covariates $W$ in our observed data distribution.  Thus we believe our theoretical positivity requirements are met.  However, practical positivity violations are very prevalent given that $W$ is high dimensional.  If we only consider those variables in $W$ that are categorical (Gender, Race/Ethnicity, Education Level, Marital Status), Table \ref{tab:prac.pos} shows that we only have two strata where no people tried to lose weight. When the categorical variable for interview period is also considered, thirteen strata have practical positivity violations.
 
-To get a better sense of the presence of practical positivity violations in our sample, see our discussion of the weight distribution in Figure \ref{fig:weight.dist} in Section \ref{sec:estimates}.
+To get a better sense of the presence of practical positivity violations in our sample, see our discussion of the weight distribution in Figure \ref{fig:weight.dist}.
 
-
+\begin{center}
 \begin{table}
 \begin{tabular}{| l | l | l | l |}
 \hline
@@ -160,6 +126,7 @@ Female & Other & HS & Married/living with partner \\
 \caption{Practical positivity violations that results when the categorical variables Gender, Race/Ethnicity, Education Level, Marital Status are considered.}
 \label{tab:proc.pos}
 \end{table}
+\end{center}
 
 \section{Commit to a Statistical Model and Target Parameter of the Observed Data Distribution}
 
@@ -172,7 +139,7 @@ $$\psi_0 = \sum_{w}\Big[\E_0(Y|A=1,W=w)-E_0(Y|A=0,W=w)\Big]P_0(W=w)$$
 \section{Estimate the Chosen Parameter of the Observed Data Distribution}
 \label{sec:estimates}
 
-We proceed with estimation even if cannot fully accept $U_A \indp U_W$ or $U_W \indp U_Y$ as presented in Section \ref{sec:assumptions}. If the assumptions hold, then we know that our estimates are directly estimating a causal parameter. Otherwise, we consider the estimates valuable pieces of information, albeit with known shortcomings. We will estimate the ATE using the following estimators: 
+We proceed with estimation although we cannot fully accept $U_A \indp U_W$ or $U_W \indp U_Y$ as presented in Section \ref{sec:assumptions}. If the assumptions hold, then we know that our estimates are directly estimating a causal parameter. Otherwise, we consider the estimates valuable pieces of information, albeit with known shortcomings. We will estimate the ATE using the following estimators: 
 
 \begin{itemize}
   \item Simple Substitution:
@@ -193,7 +160,7 @@ Where $\bar{Q}_{n}^{1}(a,W_i)$ is a targed estimate of $\E_0(Y|A=a,W)$ \cite{tml
 \end{itemize}
 
 We obtain our estimates of $\hat{g}$ and $\bar{Q}_n^0$ using the candidate library in SuperLearner shown in Table \ref{tab:sl.lib} \cite{superlearner}. To estimate $\hat{g}$, we remove $A$ from all of the custom GLM's in the second column of Table \ref{tab:sl.lib}. Note that our SuperLearner includes both basic prediction algorithms such as SL.mean and more complex prediction algorithms such as SL.ridge and SL.glmnet. We already described most of the algorithms listed here in a homework, so will not do so here. We chose our custom GLM's to round out our library since fitting GLM's is a computationally inexpensive procedure. While the $Y \sim A \times Gender \times AgeMonths \times HHInc$ GLM would likely overfit the data if fit on the full data set, SuperLearner should overcome this problem data adaptively using cross-validation.
-\begin{table}
+\begin{table}[h!]
 \begin{tabular}{l | l}
 Default Algorithms & Custom GLM's \\
 \hline
@@ -268,6 +235,7 @@ If this study were conducted more precisely, it would allow doctors to give pati
 \bibliography{mybib}{}
 \bibliographystyle{plain}
 
+
 \section*{Appendix.}
 \begin{figure}
 \centering
@@ -295,6 +263,38 @@ If this study were conducted more precisely, it would allow doctors to give pati
   \caption{Simplified DAG -- no independence assumptions on $U$'s.}
   \label{fig:DAG}
 \end{figure}
+
+\begin{center}
+\begin{figure}
+    \begin{tikzpicture}[->, shorten >=2pt, >=stealth, node distance=1cm,
+                        pil/.style={->,thick,shorten =2pt,},scale=0.65,font=\scriptsize
+                        ]
+    \node (A) [circle,draw] {A};
+    \node (W) [circle,draw,above right=of A] {W};
+    \node (Y) [circle,draw,below right=of W] {Y};
+    \node (UA) [circle,draw,below left=of A] {$U_A$};
+    \node (UW) [circle,draw,above=of W] {$U_W$};
+    \node (UY) [circle,draw,below right=of Y] {$U_Y$};
+    \draw[->] (W) to [out=195,in=95] (A);
+    \draw[->] (A.east) -- (Y.west);
+    \draw[->] (W) to [out=345,in=95] (Y);
+    \draw[->] (UW.south) -- (W.north);
+    \draw[->] (UA) to [out=45,in=225] (A);
+    \draw[->] (UY) to [out=135,in=315] (Y);
+    \draw[dashed,<->] (UW) to [out=330,in=95] (UY);
+    %\pgftransformyshift{-.65cm}
+    %\draw[decoration={text along path, text={X},text align={center}},decorate] (UA) to
+                      [out=345,in=195] (UY);
+    \draw[dashed,<->,postaction={decorate,decoration={raise=-4pt,text along path,text align=center,text={X}}}] (UA) to [out=345,in=195] (UY);
+    \draw[dashed,<->,postaction={decorate,decoration={raise=-4pt,reverse path,text along path,text align=center,text={???}}}] (UW) to [out=210,in=85] (UA);
+    \draw[dashed,<->,
+    postaction={decorate,
+    decoration={raise=-4pt,text along path,text align=center,text={???}}}] (UW) to [out=330,in=95] (UY);
+    \end{tikzpicture}
+\caption{DAG showing the backdoor criterion}
+\label{fig:DAG1}
+\end{figure}
+\end{center}
 
 \begin{figure}
 \centering
